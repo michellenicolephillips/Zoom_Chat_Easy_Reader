@@ -25,3 +25,8 @@ You will be able to toggle on and off each feature and in combinations. You will
   - See 
 - API
   - V1 easiest for us to call from the web client. later we will make it easier for other tech.
+
+## Dev Tools 
+- [React](https://reactjs.org/)
+- [Typescript](https://www.typescriptlang.org/): [video intro](https://youtu.be/zQnBQ4tB3ZA) & [intro for JS Devs](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html)
+- Regex: [RegExr](https://regexr.com/) or [Regex101](https://regex101.com/) or maybe others...
