@@ -8,7 +8,7 @@ function InputBox (props: any) {
      const [input, setInput] = useState('Insert Zoom Chat Here');
       
      const handleChange = (event: any) => {
-          setInput(input);
+          setInput(event.target.value);
      }
      const handleSubmit = (event: any) => {
           alert('A Zoom Chat Was Submitted: ' + input);
