@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-<h1>Hello</h1>
-
 function InputBox (props: any) {
 
      const [input, setInput] = useState('Insert Zoom Chat Here');
