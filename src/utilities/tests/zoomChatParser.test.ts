@@ -1,6 +1,6 @@
 import { zoomChatParser } from "../zoomChatParser"
 
-it.only("blank chat should return zero objects", () => {
+it("blank chat should return zero objects", () => {
   expect(zoomChatParser(""))
     .toMatchObject([]);
 });
