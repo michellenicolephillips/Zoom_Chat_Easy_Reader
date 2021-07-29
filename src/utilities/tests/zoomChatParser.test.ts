@@ -15,10 +15,13 @@ it("single message returns one object", () => {
     }]);
 });
 
-it("two message returns two objects", () => {
+it("two messages with two objects", () => {
+// console.log({x:`
+// 09:02:13 From Peter Kaminski to Everyone : "organized group agreements"
+// 09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`})
+
   expect(zoomChatParser(`
-  09:02:13 From Peter Kaminski to Everyone : "organized group agreements"
-  09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`))
+  09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\n\r09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`))
     .toMatchObject([
       {
         when: "09:02:13",
@@ -35,7 +38,7 @@ it("two message returns two objects", () => {
     ]);
 });
 
-it("message with a line break", () => {
+it.only("message with a line break", () => {
   expect(zoomChatParser(`
   09:12:36 From Vincent Arena to Everyone : Id love to share Troves most recent map - is actually pulling from a decentralized DB. 
 
@@ -61,6 +64,26 @@ it("message with links", () => {
         from: "CSC Zoom",
         to: "Everyone",
         message: "what does everyone think about the crunchable model : https://www.crunchbase.com/ is this outdated?",
+      }
+    ]);
+});
+
+
+it("two messages with line terminators", () => {
+  expect(zoomChatParser(`
+  09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\r\n09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`))
+    .toMatchObject([
+      {
+        when: "09:02:13",
+        from: "Peter Kaminski",
+        to: "Everyone",
+        message: "\"organized group agreements\"",
+      },
+      {
+        when: "09:06:10",
+        from: "Vincent Arena",
+        to: "Everyone",
+        message: "++ on Prototyping with Miro or graph commons!!",
       }
     ]);
 });

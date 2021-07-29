@@ -22,7 +22,7 @@ export function zoomChatParser(chatText: string): Array<ZoomChat> {
         messages.push(newMesage);
 
         if (lastMatch && lastMessage && lastMatch.input?.length && lastMatch.index && match.index) {
-            lastMessage.message = chatText.substring(lastMatch.index + lastMatch[0].length, match.index - 1)
+            lastMessage.message = chatText.substring(lastMatch.index + lastMatch[0].length, match.index).trim();
         }
 
         lastMatch = match;
