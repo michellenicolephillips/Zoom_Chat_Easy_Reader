@@ -38,21 +38,25 @@ it("two messages with two objects", () => {
     ]);
 });
 
-it.only("message with a line break", () => {
-  expect(zoomChatParser(`
-  09:12:36 From Vincent Arena to Everyone : Id love to share Troves most recent map - is actually pulling from a decentralized DB. 
+it("message with a line break", () => {
 
-  Wendy this data is available in Airtable if you want to use it in graph commons or maptio to play around?`))
-    .toMatchObject([
-      {
-        when: "09:12:36",
-        from: "Vincent Arena",
-        to: "Everyone",
-        message: `Id love to share Troves most recent map - is actually pulling from a decentralized DB. 
+const expected = [
+  {
+    when: "09:12:36",
+    from: "Vincent Arena",
+    to: "Everyone",
+    message: `Id love to share Troves most recent map - is actually pulling from a decentralized DB.
 
-        Wendy this data is available in Airtable if you want to use it in graph commons or maptio to play around?`,
-      }
-    ]);
+Wendy this data is available in Airtable if you want to use it in graph commons or maptio to play around?`,
+  }
+]
+
+const results = zoomChatParser(`
+09:12:36 From Vincent Arena to Everyone : Id love to share Troves most recent map - is actually pulling from a decentralized DB. 
+
+Wendy this data is available in Airtable if you want to use it in graph commons or maptio to play around?`)
+
+  expect(results).toMatchObject(expected);
 });
 
 it("message with links", () => {

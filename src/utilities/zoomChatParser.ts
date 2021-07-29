@@ -8,7 +8,6 @@ export interface ZoomChat {
 export function zoomChatParser(chatText: string): Array<ZoomChat> {
     const messages: Array<ZoomChat> = [];
     let matches = chatText.matchAll(/(\d\d:\d\d:\d\d) From\s{1,2}(.*?)\s{1,2}to\s{1,2}(.*?)\s{1,2}:\s{1,2}/gm);
-
     let lastMatch;
     let lastMessage: ZoomChat | undefined;
 
@@ -30,7 +29,7 @@ export function zoomChatParser(chatText: string): Array<ZoomChat> {
     }
 
     if (lastMatch !== undefined && lastMessage !==undefined && lastMatch.input?.length !== undefined && lastMatch.index !== undefined) {
-        lastMessage.message = chatText.substring(lastMatch.index + lastMatch[0].length)
+        lastMessage.message = chatText.substring(lastMatch.index + lastMatch[0].length).trim()
     }
 
 
