@@ -64,3 +64,15 @@ it("message with links", () => {
       }
     ]);
 });
+
+it("message with special characters", () => {
+  expect(zoomChatParser(`10:10:10 From  Pete Kaminski  to  Everyone : communities\ projects\ events\ resources`))
+    .toMatchObject([
+      {
+        when: "10:10:10",
+        from: "Pete Kaminski",
+        to: "Everyone",
+        message: "communities\ projects\ events\ resources",
+      }
+    ]);
+});
