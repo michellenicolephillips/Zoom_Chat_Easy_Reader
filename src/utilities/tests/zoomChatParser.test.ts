@@ -17,34 +17,37 @@ it("single message returns one object", () => {
 
 it("two message returns two objects", () => {
   expect(zoomChatParser(`
-00:00:00 From  John Doe  to  Everyone : This is the first message
-00:00:01 From  John Doe  to  Everyone : This is the second message`))
+  09:02:13 From Peter Kaminski to Everyone : "organized group agreements"
+  09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`))
     .toMatchObject([
       {
-        when: "00:00:00",
-        from: "John Doe",
+        when: "09:02:13",
+        from: "Peter Kaminski",
         to: "Everyone",
-        message: "This is the first message",
+        message: "\"organized group agreements\"",
       },
       {
-        when: "00:00:01",
-        from: "John Doe",
+        when: "09:06:10",
+        from: "Vincent Arena",
         to: "Everyone",
-        message: "This is the second message",
+        message: "++ on Prototyping with Miro or graph commons!!",
       }
     ]);
 });
 
 it("message with a line break", () => {
   expect(zoomChatParser(`
-00:00:00 From  John Doe  to  Everyone : This is the first 
-message`))
+  09:12:36 From Vincent Arena to Everyone : Id love to share Troves most recent map - is actually pulling from a decentralized DB. 
+
+  Wendy this data is available in Airtable if you want to use it in graph commons or maptio to play around?`))
     .toMatchObject([
       {
-        when: "00:00:00",
-        from: "John Doe",
+        when: "09:12:36",
+        from: "Vincent Arena",
         to: "Everyone",
-        message: "This is the first \nmessage",
+        message: `Id love to share Troves most recent map - is actually pulling from a decentralized DB. 
+
+        Wendy this data is available in Airtable if you want to use it in graph commons or maptio to play around?`,
       }
     ]);
 });
