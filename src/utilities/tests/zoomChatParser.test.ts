@@ -48,3 +48,16 @@ message`))
       }
     ]);
 });
+
+it("message with links", () => {
+  expect(zoomChatParser(`
+  10:22:07 From  CSC Zoom  to  Everyone : what does everyone think about the crunchable model : https://www.crunchbase.com/ is this outdated?`))
+    .toMatchObject([
+      {
+        when: "10:22:07",
+        from: "CSC Zoom",
+        to: "Everyone",
+        message: "what does everyone think about the crunchable model : https://www.crunchbase.com/ is this outdated?",
+      }
+    ]);
+});

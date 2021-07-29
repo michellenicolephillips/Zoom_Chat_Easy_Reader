@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../App.css';
+import '../utilities/zoomChatParser';
+import { zoomChatParser } from '../utilities/zoomChatParser';
 
 function InputBox (props: any) {
 
@@ -9,7 +11,7 @@ function InputBox (props: any) {
           setInput(event.target.value);
      }
      const handleSubmit = (event: any) => {
-          alert('A Zoom Chat Was Submitted: ' + input);
+          alert(JSON.stringify(zoomChatParser(input)));
           event.preventDefault();
      }
           return (
