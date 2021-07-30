@@ -48,7 +48,7 @@ Wendy this data is available in Airtable if you want to use it in graph commons 
 ]
 
 const results = zoomChatParser(`
-09:12:36 From Vincent Arena to Everyone : Id love to share Troves most recent map - is actually pulling from a decentralized DB. 
+09:12:36 From Vincent Arena to Everyone : Id love to share Troves most recent map - is actually pulling from a decentralized DB.
 
 Wendy this data is available in Airtable if you want to use it in graph commons or maptio to play around?`)
 
@@ -84,18 +84,6 @@ it("two messages with line terminators", () => {
         from: "Vincent Arena",
         to: "Everyone",
         message: "++ on Prototyping with Miro or graph commons!!",
-      }
-    ]);
-});
-
-it.only("message with special characters", () => {
-  expect(zoomChatParser(`10:10:10 From  Pete Kaminski  to  Everyone : communities\ projects\ events\ resources`))
-    .toMatchObject([
-      {
-        when: "10:10:10",
-        from: "Pete Kaminski",
-        to: "Everyone",
-        message: ". communities\ projects\ events\ resources",
       }
     ]);
 });
