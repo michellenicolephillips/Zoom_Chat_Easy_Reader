@@ -16,10 +16,6 @@ it("single message returns one object", () => {
 });
 
 it("two messages with two objects", () => {
-// console.log({x:`
-// 09:02:13 From Peter Kaminski to Everyone : "organized group agreements"
-// 09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`})
-
   expect(zoomChatParser(`
   09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\n\r09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`))
     .toMatchObject([
@@ -75,7 +71,7 @@ it("message with links", () => {
 
 it("two messages with line terminators", () => {
   expect(zoomChatParser(`
-  09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\r\n09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`))
+  09:02:13 From Peter Kaminski to Everyone : "organized group agreements" 09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`))
     .toMatchObject([
       {
         when: "09:02:13",
