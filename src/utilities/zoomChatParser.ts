@@ -20,7 +20,7 @@ export function zoomChatParser(chatText: string): Array<ZoomChat> {
         };
         messages.push(newMesage);
 
-        if (lastMatch && lastMessage && lastMatch.input?.length && lastMatch.index && match.index) {
+        if (lastMatch !== undefined && lastMessage !==undefined && lastMatch.input?.length !==undefined && lastMatch.index !== undefined && match.index) {
             lastMessage.message = chatText.substring(lastMatch.index + lastMatch[0].length, match.index).trim();
         }
 

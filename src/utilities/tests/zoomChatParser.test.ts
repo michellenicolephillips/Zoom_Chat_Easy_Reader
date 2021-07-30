@@ -16,8 +16,8 @@ it("single message returns one object", () => {
 });
 
 it("two messages with two objects", () => {
-  expect(zoomChatParser(`
-  09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\n\r09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`))
+  let x = zoomChatParser(`09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\n\r09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`)
+  expect(x)
     .toMatchObject([
       {
         when: "09:02:13",
