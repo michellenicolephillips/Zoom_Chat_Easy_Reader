@@ -88,14 +88,14 @@ it("two messages with line terminators", () => {
     ]);
 });
 
-it("message with special characters", () => {
+it.only("message with special characters", () => {
   expect(zoomChatParser(`10:10:10 From  Pete Kaminski  to  Everyone : communities\ projects\ events\ resources`))
     .toMatchObject([
       {
         when: "10:10:10",
         from: "Pete Kaminski",
         to: "Everyone",
-        message: "communities\ projects\ events\ resources",
+        message: ". communities\ projects\ events\ resources",
       }
     ]);
 });
