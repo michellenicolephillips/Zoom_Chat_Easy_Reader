@@ -1,31 +1,42 @@
 import React, { useState } from 'react';
 import '../App.css';
 import '../utilities/zoomChatParser';
-import { zoomChatParser } from '../utilities/zoomChatParser';
+import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
 
 function InputBox (props: any) {
 
      const [input, setInput] = useState('Insert Zoom Chat Here');
+     const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
       
      const handleChange = (event: any) => {
           setInput(event.target.value);
      }
      const handleSubmit = (event: any) => {
-          alert(JSON.stringify(zoomChatParser(input)));
+          setParsedInput(zoomChatParser(input));
           event.preventDefault();
      }
           return (
-               <form onSubmit={handleSubmit}>
-               <label>
-                    Zoom Chat:
-               </label>
-               <br/>
-               <textarea 
-                    value={input} 
-                    onChange={handleChange} />
-               <br/>
-               <input type="submit" value="Submit" />
-          </form>
+               <div>
+               <form>
+                    <label>
+                         Zoom Chat:
+                    </label>
+                    <br/>
+                    <textarea 
+                         value={input} 
+                         onChange={handleChange} />
+                    <br/>
+                    <input type="submit" value="Submit" onClick={handleSubmit}/>
+               </form>
+                 <div className="zoomChatParsedResults">
+          
+                 {parsedInput.map((zoomChat: any, index: any) => (
+                   <div key={index}>
+                        <p>{zoomChat.from + ': '  + zoomChat.message}</p>
+                   </div>
+                 ))}
+                 </div>
+               </div>
           )
 }
 export default InputBox;
