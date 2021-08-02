@@ -17,7 +17,7 @@ function InputBox (props: any) {
      }
           return (
                <div>
-               <form>
+               <form id = "textbox">
                     <label>
                          Zoom Chat:
                     </label>
