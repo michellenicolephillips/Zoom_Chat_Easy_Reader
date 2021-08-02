@@ -32,7 +32,7 @@ function InputBox (props: any) {
           
                  {parsedInput.map((zoomChat: any, index: any) => (
                    <div key={index}>
-                        <p>{zoomChat.from + ': '  + zoomChat.message}</p>
+                        <pre>{zoomChat.from + ': '  + zoomChat.message}</pre>
                    </div>
                  ))}
                  </div>
