@@ -1,66 +1,0 @@
-10:10:10 From  Pete Kaminski  to  Everyone : communities projects events resources
-10:10:40 From  Jerry Michalski  to  Everyone : shall we use the FJB channel?
-10:10:52 From  Pete Kaminski  to  Everyone : works for me
-10:15:11 From  Marc-Antoine Parent  to  Everyone : monetization: Aware of coil.com ?
-10:15:50 From  Marc-Antoine Parent  to  Everyone : If I were an e-rich man...
-10:15:54 From  Jerry Michalski  to  Everyone : havent’ seen it
-10:17:04 From  CSC Zoom  to  Everyone : it has A LOT of value to Jerry
-10:17:09 From  Jerry Michalski  to  Everyone : yeah!
-10:17:22 From  Pete Kaminski  to  Everyone : for discussion: leveling up ebooks into whatever we can call "collected, collated, curated knowledge in a graph database", and contextualization services on top of those
-10:17:34 From  CSC Zoom  to  Everyone : i have a point re: Troves
-10:18:28 From  CSC Zoom  to  Everyone : love the “contextualized” knowledge
-10:19:03 From  CSC Zoom  to  Everyone : API Widget for notion/roam/PKM systems
-10:19:28 From  Jerry Michalski  to  Everyone : trying to chat here, so it’s next to the earlier convo: https://chat.collectivesensecommons.org/agora/channels/ogm-free-jerrys-brain
-10:22:07 From  CSC Zoom  to  Everyone : what does everyone think about the crunchable model : https://www.crunchbase.com/ is this outdated?
-10:27:08 From  Pete Kaminski  to  Everyone : i think crunchbase is relevant, especially for something like Trove (obviously, the model would be something different for e.g., Climate Web)  also look at https://angel.co/ and their monetization streams.  also, probably with crunchbase, and definitely with Angel, there is a monetization engine that you don't see, where people who have central positions in the network represented in the database have massively better access to deals and deal flow, and the ability to work with innovators and funding partners at a much higher level than "retail" users of the database
-10:28:11 From  Jerry Michalski  to  Everyone : alas, the hole in the doughnut represents undershoot
-10:28:36 From  Pete Kaminski  to  Everyone : "jewel licensing"
-10:31:43 From  Jerry Michalski  to  Everyone : ah, dual
-10:32:08 From  Pete Kaminski  to  Everyone : darn, i like the name "jewel license" ;-)
-10:32:16 From  Jerry Michalski  to  Everyone : it googles well, btw :)
-10:34:27 From  David Bovill  to  Everyone : https://podcasts.apple.com/us/podcast/exploring-the-informational-ecosystem-with-jimmy-wales/id1436210825?i=1000519288146
-10:38:51 From  CSC Zoom  to  Everyone : license content in a way that it comes back with higher quality of detail…..how easy is this?
-10:38:59 From  CSC Zoom  to  Everyone : how to not decontextualize jerry’s brain
-10:41:58 From  Pete Kaminski  to  Everyone : "license content in a way that it comes back with higher quality of detail…..how easy is this"  it's sort of a technical / sociological question -- can the recipients of the content actually create more detail, that's good and not junk? and then, does their tech and your tech support giving the additional detail back in a way that's useful?
-10:45:52 From  David Bovill  to  Everyone : https://hackernoon.com/what-are-token-curated-registries-and-decentralized-lists-d33fa42ba167
-10:47:11 From  Marc-Antoine Parent  to  Everyone : Canada got rid of pennies ;-)
-10:47:39 From  Pete Kaminski  to  Everyone : Coinstar is happy to buy your worthless pennies. ;-)
-10:50:09 From  CSC Zoom  to  Everyone : “, does their tech and your tech support giving the additional detail back in a way that's useful?”
-10:50:22 From  CSC Zoom  to  Everyone : i would say there’s way to preemptively quantify this...
-10:50:34 From  CSC Zoom  to  Everyone : for example a list of the “blank fields” to be filled in.
-10:52:26 From  Pete Kaminski  to  Everyone : true, fair point. as long as you can detect whether the blank field got filled in with signal or noise...
-10:53:37 From  CSC Zoom  to  Everyone : could you give an example? name: Token Curated Registry, could also be a concept?
-10:56:33 From  Pete Kaminski  to  Everyone : one illustration of the difference between signal and noise:  signal: Token Curated Registry noise: Library Doll Glass Wore
-10:59:44 From  Pete Kaminski  to  Everyone : hypothesis: you can just send the string to Google to see if it's signal or not (which has problems with new or novel concepts, but hey)  test: google image search for "library doll glass"  https://www.google.com/search?&tbm=isch&q=library+doll+glass  result: as a naive viewer of these images, i don't feel like i can be certain if the phrase is noise or signal
-11:00:05 From  CSC Zoom  to  Everyone : Marc-Antoine I assume you’d want to treat the data differently depending on the context right? Or is the goal to try a way to at the highest level semantically understand  information that works for all/most contexts……so in a map-based application having common attractions is “pre-filtered” by locations
-11:04:10 From  CSC Zoom  to  Everyone : JSON-CMPLX or JSON-MAP?
-11:08:38 From  Marc-Antoine Parent  to  Everyone : well I expect ML to be one source of interpretation layers....
-11:09:52 From  Jerry Michalski  to  Everyone : in 1998, a startup tried to tackle how corporations use names. it was called grapeVINE, at https://web.archive.org/web/19990422030747/http://www.grapevine.com/ (took me a long time to find a viable page in the archive)
-11:11:11 From  Pete Kaminski  to  Everyone : "grapeVINE Technologies Ltd. was formed in 1986 to develop the intellectual property originating from Dr. Cyril Brookes’ research at the University of New South Wales, Australia, into innovative forms of internal communication for corporations. In the subsequent 10 years this work has been extended, prototyped and commercialized. US Patent No. 5,428,778 was issued to Dr. Cyril Brookes and assigned to the Company in 1995. It covers the key elements of the technology for selective dissemination of information."
-11:13:59 From  Pete Kaminski  to  Everyone : Cyril Brookes 1938-2007 http://campbelltown-library.blogspot.com/2017/01/cyril-brookes-1938-2007.html  "Tragically, Cyril lost his life in 2007, in a tragic accident at home. Whilst standing in the driveway, a load of timber being delivered and unloaded came loose and fell upon him, and he died shortly after.
-He had devoted his life to the development of information technology and knowledge management, but was also devoted to his wife, family and his passions. His was a life cut way too short."
-11:21:17 From  CSC Zoom  to  Everyone : not sure how helpful this is: https://slicingpie.com/
-11:21:31 From  CSC Zoom  to  Everyone : maybe combined with what Marc-Antoine is saying could be helpful
-11:21:44 From  Pete Kaminski  to  Everyone : i think https://slicingpie.com/ is the one i was thinking of
-11:21:57 From  CSC Zoom  to  Everyone : https://wiki.p2pfoundation.net/Holacracy
-11:23:05 From  Pete Kaminski  to  Everyone : "Captain and quartermaster typically received one and a half or two shares; gunners, boatswains, shipmates, carpenters, and doctors typically received one and a quarter or one and a half shares, and all others one share each." - [Governance in 18th-century piracy, Articles of agreement](https://en.wikipedia.org/wiki/Governance_in_18th-century_piracy#Articles_of_agreement)
-
-- quarter share
-- half share
-- full share
-
-see "Quarter Share", "Trader's Tales from the Golden Age of the Solar Clipper" book series, by Nathan Lowell
-11:24:14 From  Marc-Antoine Parent  to  Everyone : https://www.glassfrog.com
-11:24:43 From  Pete Kaminski  to  Everyone : https://www.sentientlaw.com/dynamic-equity-slicing-pie/
-11:25:07 From  Marc-Antoine Parent  to  Everyone : Journal of decisions
-11:25:07 From  Pete Kaminski  to  Everyone : https://medium.com/y-productive/dynamic-equity-split-or-how-everyone-is-a-co-founder-e39ca896021f
-11:25:45 From  Pete Kaminski  to  Everyone : Dynamic Equity Split (aka Slicing Pie) idea was first proposed by Mike Moyer — check his Slicing Pie website. Slicing Pie’s value proposition is a “perfectly fair equity split”.
-11:26:33 From  Pete Kaminski  to  Everyone : there are calculators for DES / Slicing Pie  https://www.google.com/search?q=dynamic+equity+split+calculator
-11:27:10 From  Jerry Michalski  to  Everyone : apparently, Moyer has made a career out of this: http://mikemoyer.com/ :)
-11:28:05 From  Pete Kaminski  to  Everyone : also see: https://guides.co/g/how-to-split-startup-equity/3516 (Mike Moyer)
-11:28:18 From  Marc-Antoine Parent  to  Everyone : I met somebody with that idea ages ago: Bayle Shanks. https://pietrust.wordpress.com/2011/05/25/welcome/ https://www.youtube.com/watch?v=N-6z_Z2Bi2k
-11:28:23 From  Jerry Michalski  to  Everyone : I have to bounce to a different Zoom for 15 minutes at the half hour. shall I pass the con, or we wrap the call?
-11:28:38 From  Pete Kaminski  to  Everyone : (you have to step through the pages of https://guides.co/g/how-to-split-startup-equity/3516 , it's not all on the one page)
-11:29:10 From  Pete Kaminski  to  Everyone : i vote to wrap the call
-11:29:24 From  Mark Trexler  to  Everyone : wrap
-11:29:28 From  Jerry Michalski  to  Everyone : kk :)

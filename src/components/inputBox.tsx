@@ -1,29 +1,49 @@
 import React, { useState } from 'react';
 import '../App.css';
+import '../utilities/zoomChatParser';
+import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
 
-function InputBox (props: any) {
+function InputBox(props: any) {
 
      const [input, setInput] = useState('Insert Zoom Chat Here');
-      
+     const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
+
      const handleChange = (event: any) => {
           setInput(event.target.value);
      }
      const handleSubmit = (event: any) => {
-          alert('A Zoom Chat Was Submitted: ' + input);
+          setParsedInput(zoomChatParser(input, true));
           event.preventDefault();
      }
-          return (
-               <form onSubmit={handleSubmit}>
-               <label>
-                    Zoom Chat:
-               </label>
-               <br/>
-               <textarea 
-                    value={input} 
-                    onChange={handleChange} />
-               <br/>
-               <input type="submit" value="Submit" />
-          </form>
-          )
+     return (
+          <div>
+               <form id="textbox">
+                    <label>
+                         Zoom Chat:
+                    </label>
+                    <br />
+                    <textarea
+                         value={input}
+                         onChange={handleChange} />
+                    <br />
+                    <input type="submit" value="Submit" onClick={handleSubmit} />
+               </form>
+               <div className="zoomChatParsedResults" id="row">
+                    <pre id="column">
+                         {parsedInput.map((zoomChat: any, index: any) => (
+                              <div key={index}>
+                                   {zoomChat.from + ' '}
+                              </div>
+                         ))}
+                    </pre>
+                    <pre id="column">
+                         {parsedInput.map((zoomChat: any, index: any) => (
+                              <div key={index}>
+                                   {zoomChat.message}
+                              </div>))}
+                    </pre>
+               </div>
+          </div>
+     )
 }
 export default InputBox;
