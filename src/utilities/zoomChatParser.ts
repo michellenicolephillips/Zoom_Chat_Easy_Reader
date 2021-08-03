@@ -7,17 +7,18 @@ export interface ZoomChat {
 
 export function zoomChatParser(chatText: string, shouldGroup: boolean): Array<ZoomChat> {
     const messages: Array<ZoomChat> = [];
-    let matches = chatText.matchAll(/(\d\d:\d\d:\d\d) From\s{1,2}(.*?)\s{1,2}to\s{1,2}(.*?)\s{1,2}:\s{1,2}/gm);
+    let matches = chatText.matchAll(/(\d\d:\d\d:\d\d)[\s|\t]*From\s{1,2}(.*?)\s*:/gm);
     let lastMatch;
     let lastMessage: ZoomChat | undefined;
     let lastNameSeen: String = '';
 
     for (const match of matches) {
+        const fromTo = match[2].split(" to ");
         const newMesage: any = {
             when: match[1],
-            from: match[2],
-            to: match[3],
-            message: match[4],
+            from: fromTo[0].trim(),
+            to: fromTo[1]?.trim(),
+            message: "",
         };
         messages.push(newMesage);
 
