@@ -25,3 +25,6 @@ textarea {
      width: 90%;
      justify-content:  center;
 }
+#row{
+  display: flex;
+}

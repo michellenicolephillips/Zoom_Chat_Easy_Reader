@@ -13,6 +13,7 @@ function InputBox (props: any) {
      }
      const handleSubmit = (event: any) => {
           setParsedInput(zoomChatParser(input));
+          console.log(zoomChatParser(input));
           event.preventDefault();
      }
           return (
@@ -28,13 +29,20 @@ function InputBox (props: any) {
                     <br/>
                     <input type="submit" value="Submit" onClick={handleSubmit}/>
                </form>
-                 <div className="zoomChatParsedResults">
-          
-                 {parsedInput.map((zoomChat: any, index: any) => (
+                 <div className="zoomChatParsedResults" id="row">
+                    <pre id ="column">
+                         {parsedInput.map((zoomChat: any, index: any) => (
+                              <div key={index}>
+                                   {zoomChat.from + ': '}
+                              </div>
+                         ))}
+                    </pre>
+                    <pre id ="column">
+                    {parsedInput.map((zoomChat: any, index: any) => (
                    <div key={index}>
-                        <pre>{zoomChat.from + ': '  + zoomChat.message}</pre>
-                   </div>
-                 ))}
+                       {zoomChat.message}
+                        </div>))}
+                    </pre>
                  </div>
                </div>
           )
