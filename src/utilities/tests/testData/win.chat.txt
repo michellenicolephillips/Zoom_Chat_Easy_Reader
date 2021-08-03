@@ -1,0 +1,56 @@
+11:48:19	 From  BentleyDavis.com : 😀 at the start
+11:48:31	 From  BentleyDavis.com : Emoji at the end 😀
+11:49:04	 From  Michelle Phillips : EMOJI 😃 IN THE MIDDLE
+11:49:35	 From  Michelle Phillips : test with tab copied over
+11:50:18	 From  Michelle Phillips : hello
+11:51:27	 From  BentleyDavis.com : Long Text with some formatting https://lipsum.com/ 
+
+What is Lorem Ipsum?
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+
+Why do we use it?
+It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+11:52:07	 From  BentleyDavis.com : communitiesprojectseventsresources
+11:53:34	 From  Michelle Phillips : <form id="textbox">
+                    <label>
+                         Zoom Chat:
+                    </label>
+                    <br />
+11:55:06	 From  BentleyDavis.com : Markdown
+\n*[ link text ](https://BentleyDavis.com)*
+
+## Title
+11:55:35	 From  BentleyDavis.com : Text after chat saved
+11:48:19 From  BentleyDavis.com  to  Everyone:
+	😀 at the start
+11:48:31 From  BentleyDavis.com  to  Everyone:
+	Emoji at the end 😀
+11:49:04 From  Michelle Phillips  to  Everyone:
+	EMOJI 😃 IN THE MIDDLE
+11:49:35 From  Michelle Phillips  to  Everyone:
+	test with tab copied over
+11:50:18 From  Michelle Phillips  to  Everyone:
+	hello
+11:51:27 From  BentleyDavis.com  to  Everyone:
+	Long Text with some formatting https://lipsum.com/ 
+	
+	What is Lorem Ipsum?
+	Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+	
+	Why do we use it?
+	It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.
+11:52:07 From  BentleyDavis.com  to  Everyone:
+	communitiesprojectseventsresources
+11:53:34 From  Michelle Phillips  to  Everyone:
+	<form id="textbox">
+	                    <label>
+	                         Zoom Chat:
+	                    </label>
+	                    <br />
+11:55:06 From  BentleyDavis.com  to  Everyone:
+	Markdown
+	\n*[ link text ](https://BentleyDavis.com)*
+	
+	## Title
+11:55:35 From  BentleyDavis.com  to  Everyone:
+	Text after chat saved
