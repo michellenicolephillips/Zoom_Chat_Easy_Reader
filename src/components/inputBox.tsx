@@ -28,21 +28,21 @@ function InputBox(props: any) {
                     <br />
                     <input type="submit" value="Submit" onClick={handleSubmit} />
                </form>
-               <div className="zoomChatParsedResults" id="row">
+               <table className="zoomChatParsedResults" id="row">
                     <pre id="column">
                          {parsedInput.map((zoomChat: any, index: any) => (
-                              <div key={index}>
+                              <tr>
+                              <td id="resultsTableFrom" key={index}>
                                    {zoomChat.from + ' '}
-                              </div>
+                              </td>
+                               <td id="resultsTableMessage" key={index}>
+                               {zoomChat.message}
+                          </td>
+                          </tr>
                          ))}
                     </pre>
-                    <pre id="column">
-                         {parsedInput.map((zoomChat: any, index: any) => (
-                              <div key={index}>
-                                   {zoomChat.message}
-                              </div>))}
-                    </pre>
-               </div>
+                  
+               </table>
           </div>
      )
 }

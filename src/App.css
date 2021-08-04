@@ -25,6 +25,14 @@ textarea {
      width: 90%;
      justify-content:  center;
 }
-#row{
-  display: flex;
+
+#resultsTableFrom {
+     display: flex;
+}
+#resultsTableMessage{
+     word-wrap: break-word;
+}
+table{
+     width: 1000px;
+     table-layout: fixed;
 }
