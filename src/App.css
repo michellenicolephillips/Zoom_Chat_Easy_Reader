@@ -26,13 +26,12 @@ textarea {
      justify-content:  center;
 }
 
-#resultsTableFrom {
-     display: flex;
+.resultsTableFrom, .resultsTableMessage {
+     display: inline-flex;
 }
-#resultsTableMessage{
-     word-wrap: break-word;
-}
-table{
-     width: 1000px;
-     table-layout: fixed;
+/*.resultsTableMessage{
+     flex: 1;
+}*/
+#row{
+     white-space: pre-wrap;
 }
