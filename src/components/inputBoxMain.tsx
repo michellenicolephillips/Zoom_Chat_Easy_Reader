@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import '../App.css';
 import '../utilities/zoomChatParser';
-import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
+//import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
+import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser - Copy';
 
 function InputBoxMain(props: any) {
 
@@ -12,7 +13,7 @@ function InputBoxMain(props: any) {
           setInput(event.target.value);
      }
      const handleSubmit = (event: any) => {
-          setParsedInput(zoomChatParser(input, true));
+          setParsedInput(zoomChatParser(input));
           event.preventDefault();
      }
      return (
