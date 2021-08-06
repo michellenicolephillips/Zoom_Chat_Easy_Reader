@@ -8,6 +8,7 @@ function InputBox(props: { parsedInput: any }) {
 
      return (
           <div>
+               <p>Grid Results</p>
                <div>
                     {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
                          <div className="gridContainer" key={zoomChat.key}>
