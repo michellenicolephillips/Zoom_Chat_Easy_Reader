@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
-import InputBox from './components/inputBox';
+import InputBoxMain from './components/inputBoxMain';
+import InputBoxGridResults from './components/inputBoxGridResults';
+import InputBoxTableResults from './components/inputBoxTableResults';
 
 function App() {
   return (
     <div className="App">
-      <InputBox/>
+      <InputBoxMain/>
+      <InputBoxGridResults/>
+      <InputBoxTableResults/>
     </div>
   );
 }

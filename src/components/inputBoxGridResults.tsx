@@ -30,11 +30,11 @@ function InputBox(props: any) {
                </form>
                <div>
                          {parsedInput.map((zoomChat: any, index: any) => (
-                              <div id = "row">
-                                        <div className="resultsTableFrom" key={index}>
+                              <div className = "gridContainer">
+                                        <div className="resultsGridFrom" key={index}>
                                              {zoomChat.from + ' '}
                                          </div>
-                                        <div className="resultsTableMessage" key={index}>
+                                        <div className="resultsGridMessage" key={index}>
                                              {zoomChat.message}
                                    </div>
                                    </div>

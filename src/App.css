@@ -4,39 +4,68 @@
   margin: 2%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
 #textbox {
   text-align: center;
 }
-.App-link {
-  color: #61dafb;
-}
+
 textarea {
      height: 100px;
      width: 90%;
      justify-content:  center;
 }
-
-#row{
+/*div Input Box CSS*/
+.divRow{
      display: flex;
 }
 
-.resultsTableFrom{
+.resultsDivFrom{
   width: 150px;
   flex: none;
+  font-size: .75em;
+  color: grey;
 }
 
-.resultsTableMessage {
+.resultsDivMessage {
      white-space: pre-wrap;
      flex: 1;
+     background-color: lightgrey;
+     margin: 1px;
+     padding: 10px;
+     border-radius: 25px;
+}
+/*Grid Input Box CSS*/
+.gridContainer{
+     display: grid;
+     grid-template-columns: 1fr 3fr;
+}
+.resultsGridFrom{
+     font-size: .75em;
+     color: grey;
+  
+}
+.resultsGridMessage{
+     white-space: pre-wrap;
+     background-color: lightgrey;
+     margin: 1px;
+     padding: 10px;
+     border-radius: 25px;
+    
+}
+
+/*Table Input Box CSS*/
+table{
+     width: 1000px;
+     table-layout: fixed;
+} 
+.resultsTableFrom {
+     display: flex;
+     font-size: .75em;
+     color: grey;
+}
+.resultsTableMessage{
+     white-space: pre-wrap;
+     background-color: lightgrey;
+     padding: 10px;
+     border-radius: 25px;
 }
 
