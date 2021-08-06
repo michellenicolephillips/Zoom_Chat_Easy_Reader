@@ -54,7 +54,6 @@ textarea {
 
 /*Table Input Box CSS*/
 table{
-     width: 1000px;
      table-layout: fixed;
 } 
 .resultsTableFrom {

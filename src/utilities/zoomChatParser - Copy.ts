@@ -4,6 +4,7 @@ export interface ZoomChat {
     to: string;
     message: string;
     repeatedFromTo: boolean | undefined;
+    key: number;
 }
 
 export function setRepeatedFromTo(messages: Array<ZoomChat>) {

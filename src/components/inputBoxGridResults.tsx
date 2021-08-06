@@ -4,43 +4,23 @@ import '../utilities/zoomChatParser';
 //import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
 import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser - Copy';
 
-function InputBox(props: any) {
+function InputBox(props: { parsedInput: any }) {
 
-     const [input, setInput] = useState('Insert Zoom Chat Here');
-     const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
 
-     const handleChange = (event: any) => {
-          setInput(event.target.value);
-     }
-     const handleSubmit = (event: any) => {
-          setParsedInput(zoomChatParser(input));
-          event.preventDefault();
-     }
      return (
           <div>
-               <form id="textbox">
-                    <label>
-                         Zoom Chat:
-                    </label>
-                    <br />
-                    <textarea
-                         value={input}
-                         onChange={handleChange} />
-                    <br />
-                    <input type="submit" value="Submit" onClick={handleSubmit} />
-               </form>
                <div>
-                         {parsedInput.map((zoomChat: any, index: any) => (
-                              <div className = "gridContainer">
-                                        <div className="resultsGridFrom" key={index}>
-                                             {zoomChat.from + ' '}
-                                         </div>
-                                        <div className="resultsGridMessage" key={index}>
-                                             {zoomChat.message}
-                                   </div>
-                                   </div>
-                         ))}
-          </div>
+                    {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
+                         <div className="gridContainer" key={zoomChat.key}>
+                              <div className="resultsGridFrom" >
+                                   {zoomChat.from + ' '} *{zoomChat.key}*
+                              </div>
+                              <div className="resultsGridMessage" >
+                                   {zoomChat.message}
+                              </div>
+                         </div>
+                    ))}
+               </div>
           </div>
      )
 }

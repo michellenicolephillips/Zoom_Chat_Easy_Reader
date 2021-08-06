@@ -1,9 +1,28 @@
-export interface ZoomChat {
-    when: string;
-    from: string;
-    to: string;
-    message: string;
-}
+// export interface ZoomChat {
+//     when: string;
+//     from: string;
+//     to: string;
+//     message: string;
+//     key: number;
+// }
+
+import { ZoomChat } from "./zoomChatParser - Copy";
+
+            // TODO: look for a better algorythm //Convert to 32bit integer
+            function stringToHash(string:string) {
+                  
+                var hash = 0;
+                  
+                if (string.length == 0) return hash;
+                  
+                for (let i = 0; i < string.length; i++) {
+                    let char = string.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash;
+                }
+                  
+                return hash;
+            }
 
 export function zoomChatParser(chatText: string, shouldGroup: boolean): Array<ZoomChat> {
     const messages: Array<ZoomChat> = [];
@@ -12,13 +31,16 @@ export function zoomChatParser(chatText: string, shouldGroup: boolean): Array<Zo
     let lastMessage: ZoomChat | undefined;
     let lastNameSeen: String = '';
 
+   
     for (const match of matches) {
         const fromTo = match[2].split(" to ");
-        const newMesage: any = {
+        const newMesage: ZoomChat = {
             when: match[1],
             from: fromTo[0].trim(),
             to: fromTo[1]?.trim(),
             message: "",
+            key: stringToHash(match[1]),
+            repeatedFromTo: undefined
         };
         messages.push(newMesage);
 
