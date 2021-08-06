@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import InputBoxMain from './components/inputBoxMain';
-import InputBoxGridResults from './components/inputBoxGridResults';
-import InputBoxTableResults from './components/inputBoxTableResults';
+import DivResults from './components/divResults';
+import GridResults from './components/gridResults';
+import TableResults from './components/tableResults';
 import InputBox from './components/inputBox';
-import { ZoomChat } from './utilities/zoomChatParser - Copy';
+import { ZoomChat } from './utilities/zoomChatParser';
 
 function App() {
 
@@ -14,11 +14,11 @@ function App() {
   return (
     <div className="App">
       <InputBox setParsedInput={setParsedInput}></InputBox>
-      <InputBoxGridResults parsedInput={parsedInput}/>
-      ---------------------------------
-      <InputBoxGridResults parsedInput={parsedInput}/>
-      {/* <InputBoxMain/>
-      <InputBoxTableResults/> */}
+      <GridResults parsedInput={parsedInput}/>
+      ========================
+      <TableResults parsedInput={parsedInput}/>
+      ========================
+      <DivResults parsedInput={parsedInput}/>
     </div>
   );
 }

@@ -6,13 +6,29 @@ export interface ZoomChat {
     repeatedFromTo: boolean | undefined;
     key: number;
 }
+// TODO: look for a better algorithm //Convert to 32bit integer
+function stringToHash(string:string) {
+                  
+     var hash = 0;
+       
+     if (string.length === 0) return hash;
+       
+     for (let i = 0; i < string.length; i++) {
+         let char = string.charCodeAt(i);
+         hash = ((hash << 5) - hash) + char;
+         hash = hash & hash;
+     }
+       
+     return hash;
+ }
+
 
 export function setRepeatedFromTo(messages: Array<ZoomChat>) {
-    messages.forEach((message, index, messages) => {
+    messages.forEach((message: ZoomChat, index: number) => {
         if (index === 0) {
             message.repeatedFromTo = false;
         } else {
-            const previousMessage = messages[index - 1];
+            const previousMessage: ZoomChat = messages[index - 1];
             message.repeatedFromTo =
                 message.from === previousMessage.from &&
                 message.to === previousMessage.to
@@ -34,6 +50,7 @@ export function zoomChatParser(chatText: string): Array<ZoomChat> {
             from: fromTo[0].trim(),
             to: fromTo[1]?.trim(),
             message: "",
+            key: stringToHash(match[1])
         };
         messages.push(newMesage);
 

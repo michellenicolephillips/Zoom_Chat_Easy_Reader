@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../App.css';
 import '../utilities/zoomChatParser';
-//import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
-import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser - Copy';
+import { ZoomChat } from '../utilities/zoomChatParser';
 
 function InputBox(props: { parsedInput: any }) {
 
@@ -13,7 +12,12 @@ function InputBox(props: { parsedInput: any }) {
                     {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
                          <div className="gridContainer" key={zoomChat.key}>
                               <div className="resultsGridFrom" >
-                                   {zoomChat.from + ' '} *{zoomChat.key}*
+                                   {(() => {
+                                        if (zoomChat.repeatedFromTo === false) {
+                                             return zoomChat.from;
+                                        }
+                                   })()
+                                   }
                               </div>
                               <div className="resultsGridMessage" >
                                    {zoomChat.message}
