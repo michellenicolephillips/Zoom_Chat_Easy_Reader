@@ -10,20 +10,34 @@ function App() {
 
   const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
 
+  const [selection, setSelection] = useState();
+
+  const handleChange = (event: any) => {
+    setSelection(event.target.value);
+  }
+
 
   return (
     <div className="App">
       <InputBox setParsedInput={setParsedInput}></InputBox>
-      Grid Results
-      <GridResults parsedInput={parsedInput}/>
-      ========================
-      <br/>
-      Table Results
-      <TableResults parsedInput={parsedInput}/>
-      ========================
-      <br/>
-      Div Results
-      <DivResults parsedInput={parsedInput}/>
+      <select value={selection} onChange={handleChange}>
+        <option value="divLayout">Div Results</option>
+        <option value="gridLayout">Grid Results</option>
+        <option value="tableLayout">Table Results</option>
+      </select>
+
+      {(() => {
+        if (selection === "divLayout") {
+          return <DivResults parsedInput={parsedInput} />
+        }
+        if (selection === "gridLayout") {
+          return <GridResults parsedInput={parsedInput} />
+        }
+        if (selection === "tableLayout") {
+          return <TableResults parsedInput={parsedInput} />
+        }
+      })()
+      }
     </div>
   );
 }
