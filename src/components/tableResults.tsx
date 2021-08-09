@@ -7,7 +7,6 @@ function InputBox(props: { parsedInput: any }) {
 
      return (
           <div>
-               <p>Table Results</p>
                <table className="zoomChatParsedResults" id="row" >
                     {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
                          <tr key={zoomChat.key}>

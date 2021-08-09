@@ -7,8 +7,7 @@ function InputBoxMain(props: { parsedInput: any }) {
 
      return (
           <div>
-               <p>Div Results</p>
-               <div>
+             <div>
                     {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
                          <div className="divRow" key={zoomChat.key}>
                               <div className="resultsDivFrom">

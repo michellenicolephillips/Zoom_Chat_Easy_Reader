@@ -6,7 +6,7 @@ import {  zoomChatParser } from '../utilities/zoomChatParser';
 
 function InputBox(props: {setParsedInput:any}) {
 
-     const [input, setInput] = useState('Insert Zoom Chat Here');
+     const [input, setInput] = useState('');
 
      const handleChange = (event: any) => {
           setInput(event.target.value);
@@ -25,6 +25,7 @@ function InputBox(props: {setParsedInput:any}) {
                     </label>
                     <br />
                     <textarea
+                         placeholder="Paste Zoom Chat Here:"
                          value={input}
                          onChange={handleChange} />
                     <br />

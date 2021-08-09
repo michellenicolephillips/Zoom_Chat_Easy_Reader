@@ -14,10 +14,15 @@ function App() {
   return (
     <div className="App">
       <InputBox setParsedInput={setParsedInput}></InputBox>
+      Grid Results
       <GridResults parsedInput={parsedInput}/>
       ========================
+      <br/>
+      Table Results
       <TableResults parsedInput={parsedInput}/>
       ========================
+      <br/>
+      Div Results
       <DivResults parsedInput={parsedInput}/>
     </div>
   );
