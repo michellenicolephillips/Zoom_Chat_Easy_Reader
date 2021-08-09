@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
 import '../App.css';
-import '../utilities/zoomChatParser';
-import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
+import {  zoomChatParser } from '../utilities/zoomChatParser';
 
-function InputBox(props: any) {
 
-     const [input, setInput] = useState('Insert Zoom Chat Here');
-     const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
+
+function InputBox(props: {setParsedInput:any}) {
+
+     const [input, setInput] = useState('');
 
      const handleChange = (event: any) => {
           setInput(event.target.value);
      }
      const handleSubmit = (event: any) => {
-          setParsedInput(zoomChatParser(input, true));
+          let parsedInput = zoomChatParser(input);
+          console.log(parsedInput);
+          props.setParsedInput(parsedInput);
           event.preventDefault();
      }
      return (
@@ -23,26 +25,12 @@ function InputBox(props: any) {
                     </label>
                     <br />
                     <textarea
+                         placeholder="Paste Zoom Chat Here:"
                          value={input}
                          onChange={handleChange} />
                     <br />
                     <input type="submit" value="Submit" onClick={handleSubmit} />
                </form>
-               <div className="zoomChatParsedResults" id="row">
-                    <pre id="column">
-                         {parsedInput.map((zoomChat: any, index: any) => (
-                              <div key={index}>
-                                   {zoomChat.from + ' '}
-                              </div>
-                         ))}
-                    </pre>
-                    <pre id="column">
-                         {parsedInput.map((zoomChat: any, index: any) => (
-                              <div key={index}>
-                                   {zoomChat.message}
-                              </div>))}
-                    </pre>
-               </div>
           </div>
      )
 }
