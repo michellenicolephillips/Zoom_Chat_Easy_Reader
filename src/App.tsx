@@ -10,10 +10,12 @@ function App() {
 
   const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
 
-  const [selection, setSelection] = useState();
+  const [selection, setSelection] = useState("tableLayout");
 
-  const handleChange = (event: any) => {
-    setSelection(event.target.value);
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
+    if (event) {
+      event && setSelection(event.target.value);
+    }
   }
 
 
@@ -26,17 +28,10 @@ function App() {
         <option value="tableLayout">Table Results</option>
       </select>
 
-      {(() => {
-        if (selection === "divLayout") {
-          return <DivResults parsedInput={parsedInput} />
-        }
-        if (selection === "gridLayout") {
-          return <GridResults parsedInput={parsedInput} />
-        }
-        if (selection === "tableLayout") {
-          return <TableResults parsedInput={parsedInput} />
-        }
-      })()
+      {
+        selection === "divLayout" ? <DivResults parsedInput={parsedInput} /> :
+          selection === "gridLayout" ? <GridResults parsedInput={parsedInput} /> :
+            selection === "tableLayout" ? <TableResults parsedInput={parsedInput} /> : ""
       }
     </div>
   );
