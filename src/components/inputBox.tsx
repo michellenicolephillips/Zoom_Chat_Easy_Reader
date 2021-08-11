@@ -9,8 +9,13 @@ function InputBox(props: {setParsedInput:any}) {
      const [input, setInput] = useState('');
 
      const handleChange = (event: any) => {
+        
           props.setParsedInput(zoomChatParser(event.target.value));
           setInput(event.target.value);
+          console.log(zoomChatParser(input));
+          if (zoomChatParser(input) !== []) {
+               alert('Please insert zoom chat');
+          }
      }
      return (
           <div>

@@ -8,21 +8,23 @@ function InputBox(props: { parsedInput: any }) {
      return (
           <div>
                <table className="zoomChatParsedResults" id="row" >
-                    {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
-                         <tr key={zoomChat.key}>
-                              <td className="resultsTableFrom">
-                                   {(() => {
-                                        if (zoomChat.repeatedFromTo === false) {
-                                            return zoomChat.from;
+                    <tbody>
+                         {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
+                              <tr key={zoomChat.key}>
+                                   <td className="resultsTableFrom">
+                                        {(() => {
+                                             if (zoomChat.repeatedFromTo === false) {
+                                                  return zoomChat.from;
+                                             }
+                                        })()
                                         }
-                                   })()
-                                   }
-                              </td>
-                              <td className="resultsTableMessage">
-                                   {zoomChat.message}
-                              </td>
-                         </tr>
-                    ))}
+                                   </td>
+                                   <td className="resultsTableMessage">
+                                        {zoomChat.message}
+                                   </td>
+                              </tr>
+                         ))}
+                    </tbody>
                </table>
           </div >
      )
