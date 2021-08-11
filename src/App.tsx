@@ -21,6 +21,8 @@ function App() {
 
   return (
     <div className="App">
+      <div style={{ textAlign: "center" }}>This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
+      <br></br><br></br>
       <InputBox setParsedInput={setParsedInput}></InputBox>
       <select value={selection} onChange={handleChange}>
         <option value="divLayout">Div Results</option>
@@ -33,6 +35,11 @@ function App() {
           selection === "gridLayout" ? <GridResults parsedInput={parsedInput} /> :
             selection === "tableLayout" ? <TableResults parsedInput={parsedInput} /> : ""
       }
+      <br/><br/>
+       <div style={{ textAlign: "center" }}>
+        In the future all data will be processed on your computer.
+        Until the <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donation goal</a> is reached your data can be sent to a central server for prcessing but not stored.
+      </div>
     </div>
   );
 }

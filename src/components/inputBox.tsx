@@ -9,13 +9,8 @@ function InputBox(props: {setParsedInput:any}) {
      const [input, setInput] = useState('');
 
      const handleChange = (event: any) => {
+          props.setParsedInput(zoomChatParser(event.target.value));
           setInput(event.target.value);
-     }
-     const handleSubmit = (event: any) => {
-          let parsedInput = zoomChatParser(input);
-          console.log(parsedInput);
-          props.setParsedInput(parsedInput);
-          event.preventDefault();
      }
      return (
           <div>
@@ -29,7 +24,6 @@ function InputBox(props: {setParsedInput:any}) {
                          value={input}
                          onChange={handleChange} />
                     <br />
-                    <input type="submit" value="Submit" onClick={handleSubmit} />
                </form>
           </div>
      )
