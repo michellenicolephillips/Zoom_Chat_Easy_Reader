@@ -31,6 +31,9 @@ function App() {
         <option value="gridLayout">Grid Results</option>
         <option value="tableLayout">Table Results</option>
       </select>
+  
+      {parsedInput.length === 0 ? alert("Please insert zoom chat!") : ''}
+      
       {
         selection === "divLayout" ? <DivResults parsedInput={parsedInput} /> :
           selection === "gridLayout" ? <GridResults parsedInput={parsedInput} /> :
