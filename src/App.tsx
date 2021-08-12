@@ -10,6 +10,8 @@ function App() {
 
   const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
 
+  const [input, setInput] = useState('');
+
   const [selection, setSelection] = useState("tableLayout");
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
@@ -23,13 +25,12 @@ function App() {
     <div className="App">
       <div style={{ textAlign: "center" }}>This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
       <br></br><br></br>
-      <InputBox setParsedInput={setParsedInput}></InputBox>
+      <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input}></InputBox>
       <select value={selection} onChange={handleChange}>
         <option value="divLayout">Div Results</option>
         <option value="gridLayout">Grid Results</option>
         <option value="tableLayout">Table Results</option>
       </select>
-
       {
         selection === "divLayout" ? <DivResults parsedInput={parsedInput} /> :
           selection === "gridLayout" ? <GridResults parsedInput={parsedInput} /> :
