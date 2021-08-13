@@ -10,20 +10,40 @@ function App() {
 
   const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
 
+  const [input, setInput] = useState('');
+
+  const [selection, setSelection] = useState("tableLayout");
+
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
+    if (event) {
+      event && setSelection(event.target.value);
+    }
+  }
+
 
   return (
     <div className="App">
-      <InputBox setParsedInput={setParsedInput}></InputBox>
-      Grid Results
-      <GridResults parsedInput={parsedInput}/>
-      ========================
-      <br/>
-      Table Results
-      <TableResults parsedInput={parsedInput}/>
-      ========================
-      <br/>
-      Div Results
-      <DivResults parsedInput={parsedInput}/>
+      <div style={{ textAlign: "center" }}>This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
+      <br></br><br></br>
+      <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input}></InputBox>
+      <select value={selection} onChange={handleChange}>
+        <option value="divLayout">Div Results</option>
+        <option value="gridLayout">Grid Results</option>
+        <option value="tableLayout">Table Results</option>
+      </select>
+  
+      {parsedInput.length === 0 ? alert("That is not the correct format. Please insert a zoom chat!") : ''}
+
+      {
+        selection === "divLayout" ? <DivResults parsedInput={parsedInput} /> :
+          selection === "gridLayout" ? <GridResults parsedInput={parsedInput} /> :
+            selection === "tableLayout" ? <TableResults parsedInput={parsedInput} /> : ""
+      }
+      <br/><br/>
+       <div style={{ textAlign: "center" }}>
+        In the future all data will be processed on your computer.
+        Until the <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donation goal</a> is reached your data can be sent to a central server for prcessing but not stored.
+      </div>
     </div>
   );
 }

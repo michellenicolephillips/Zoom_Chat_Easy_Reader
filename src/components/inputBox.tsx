@@ -1,21 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../App.css';
 import {  zoomChatParser } from '../utilities/zoomChatParser';
 
 
 
-function InputBox(props: {setParsedInput:any}) {
+function InputBox(props: {setParsedInput:any, input:any, setInput:any}) {
 
-     const [input, setInput] = useState('');
 
      const handleChange = (event: any) => {
-          setInput(event.target.value);
-     }
-     const handleSubmit = (event: any) => {
-          let parsedInput = zoomChatParser(input);
-          console.log(parsedInput);
-          props.setParsedInput(parsedInput);
-          event.preventDefault();
+        
+          props.setParsedInput(zoomChatParser(event.target.value));
+          props.setInput(event.target.value);
      }
      return (
           <div>
@@ -26,10 +21,9 @@ function InputBox(props: {setParsedInput:any}) {
                     <br />
                     <textarea
                          placeholder="Paste Zoom Chat Here:"
-                         value={input}
+                         value={props.input}
                          onChange={handleChange} />
                     <br />
-                    <input type="submit" value="Submit" onClick={handleSubmit} />
                </form>
           </div>
      )
