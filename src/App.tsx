@@ -9,12 +9,10 @@ import { ZoomChat } from './utilities/zoomChatParser';
 function App() {
 
   const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
-
   const [input, setInput] = useState('');
-
   const [selection, setSelection] = useState("tableLayout");
-
   const [hideNamesOn, setHideNamesOn] = useState(true);
+  const [blankSpace, setBlankSpace] = useState(true);
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
     if (event) {
@@ -22,16 +20,24 @@ function App() {
     }
   }
 
-  const handleClick = () => 
+  const hideNames = () => 
   {
     if (hideNamesOn) {
       setHideNamesOn(false);
     }
     if (hideNamesOn === false) {
       setHideNamesOn(true);
-    } 
+    }
   }
-
+  const addSpace = () => 
+  {
+    if (blankSpace) {
+      setBlankSpace(false);
+    } 
+    if (blankSpace === false) {
+      setBlankSpace(true);
+    }
+  }
 
   return (
     <div className="App">
@@ -44,13 +50,13 @@ function App() {
         <option value="gridLayout">Grid Results</option>
         <option value="tableLayout">Table Results</option>
       </select>
-      <button onClick={handleClick}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</button>
+      <button onClick={hideNames}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</button>  
+      <button onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</button>
       <br/>
-
       {
-        selection === "divLayout" ? <DivResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> :
-          selection === "gridLayout" ? <GridResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> :
-            selection === "tableLayout" ? <TableResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> : ""
+        selection === "divLayout" ? <DivResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> :
+          selection === "gridLayout" ? <GridResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> :
+            selection === "tableLayout" ? <TableResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> : ""
       }
       <br/><br/>
        <div style={{ textAlign: "center" }}>

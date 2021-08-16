@@ -4,6 +4,10 @@
   margin: 2%;
 }
 
+.warning{
+text-align: center;
+}
+
 #textbox {
   text-align: center;
 }
@@ -66,5 +70,9 @@ table{
      background-color: lightgrey;
      padding: 10px;
      border-radius: 25px;
+}
+.blankSpace{
+     border-radius: none;
+     white-space: normal;
 }
 
