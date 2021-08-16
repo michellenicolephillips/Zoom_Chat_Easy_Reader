@@ -37,7 +37,7 @@ function App() {
     <div className="App">
       <div style={{ textAlign: "center" }}>This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
       <br></br><br></br>
-      {parsedInput.length === 0 ? <label>"That is not the correct format. Please insert a zoom chat!"</label> : ''}
+      {parsedInput.length === 0 && input.length>0 ?<div style={{background:"tomato", padding:"20px"}}>"That is not the correct format. Please insert a zoom chat!"</div> : ''}
       <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input}></InputBox>
       <select value={selection} onChange={handleChange}>
         <option value="divLayout">Div Results</option>
