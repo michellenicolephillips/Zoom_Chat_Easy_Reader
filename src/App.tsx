@@ -14,10 +14,22 @@ function App() {
 
   const [selection, setSelection] = useState("tableLayout");
 
+  const [hideNamesOn, setHideNamesOn] = useState(true);
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
     if (event) {
       event && setSelection(event.target.value);
     }
+  }
+
+  const handleClick = () => 
+  {
+    if (hideNamesOn) {
+      setHideNamesOn(false);
+    }
+    if (hideNamesOn === false) {
+      setHideNamesOn(true);
+    } 
   }
 
 
@@ -25,19 +37,20 @@ function App() {
     <div className="App">
       <div style={{ textAlign: "center" }}>This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
       <br></br><br></br>
+      {parsedInput.length === 0 ? <label>"That is not the correct format. Please insert a zoom chat!"</label> : ''}
       <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input}></InputBox>
       <select value={selection} onChange={handleChange}>
         <option value="divLayout">Div Results</option>
         <option value="gridLayout">Grid Results</option>
         <option value="tableLayout">Table Results</option>
       </select>
-  
-      {parsedInput.length === 0 ? alert("That is not the correct format. Please insert a zoom chat!") : ''}
+      <button onClick={handleClick}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</button>
+      <br/>
 
       {
-        selection === "divLayout" ? <DivResults parsedInput={parsedInput} /> :
-          selection === "gridLayout" ? <GridResults parsedInput={parsedInput} /> :
-            selection === "tableLayout" ? <TableResults parsedInput={parsedInput} /> : ""
+        selection === "divLayout" ? <DivResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> :
+          selection === "gridLayout" ? <GridResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> :
+            selection === "tableLayout" ? <TableResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> : ""
       }
       <br/><br/>
        <div style={{ textAlign: "center" }}>

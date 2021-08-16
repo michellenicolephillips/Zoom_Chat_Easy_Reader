@@ -3,7 +3,7 @@ import '../App.css';
 import '../utilities/zoomChatParser';
 import { ZoomChat } from '../utilities/zoomChatParser';
 
-function InputBox(props: { parsedInput: any }) {
+function InputBox(props: { parsedInput: any, hideNamesOn: boolean }) {
 
 
      return (
@@ -13,11 +13,13 @@ function InputBox(props: { parsedInput: any }) {
                          <div className="gridContainer" key={zoomChat.key}>
                               <div className="resultsGridFrom" >
                                    {(() => {
-                                        if (zoomChat.repeatedFromTo === false) {
-                                             return zoomChat.from;
+                                        if (props.hideNamesOn) {
+                                             if (zoomChat.repeatedFromTo === false) {
+                                                  return zoomChat.from;
+                                             }
                                         }
-                                   })()
                                    }
+                                   )()}
                               </div>
                               <div className="resultsGridMessage" >
                                    {zoomChat.message}
