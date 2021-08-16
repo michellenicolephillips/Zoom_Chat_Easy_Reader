@@ -37,6 +37,7 @@ function App() {
     <div className="App">
       <div style={{ textAlign: "center" }}>This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
       <br></br><br></br>
+      {parsedInput.length === 0 ? <label>"That is not the correct format. Please insert a zoom chat!"</label> : ''}
       <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input}></InputBox>
       <select value={selection} onChange={handleChange}>
         <option value="divLayout">Div Results</option>
@@ -45,8 +46,6 @@ function App() {
       </select>
       <button onClick={handleClick}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</button>
       <br/>
-  
-      {parsedInput.length === 0 ? <label>"That is not the correct format. Please insert a zoom chat!"</label> : ''}
 
       {
         selection === "divLayout" ? <DivResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> :
