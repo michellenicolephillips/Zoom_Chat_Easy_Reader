@@ -14,10 +14,22 @@ function App() {
 
   const [selection, setSelection] = useState("tableLayout");
 
+  const [hideNamesOn, setHideNamesOn] = useState(true);
+
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
     if (event) {
       event && setSelection(event.target.value);
     }
+  }
+
+  const handleClick = () => 
+  {
+    if (hideNamesOn) {
+      setHideNamesOn(false);
+    }
+    if (hideNamesOn === false) {
+      setHideNamesOn(true);
+    } 
   }
 
 
@@ -31,14 +43,15 @@ function App() {
         <option value="gridLayout">Grid Results</option>
         <option value="tableLayout">Table Results</option>
       </select>
+      <button onClick={handleClick}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</button>
       <br/>
   
       {parsedInput.length === 0 ? <label>"That is not the correct format. Please insert a zoom chat!"</label> : ''}
 
       {
-        selection === "divLayout" ? <DivResults parsedInput={parsedInput} /> :
-          selection === "gridLayout" ? <GridResults parsedInput={parsedInput} /> :
-            selection === "tableLayout" ? <TableResults parsedInput={parsedInput} /> : ""
+        selection === "divLayout" ? <DivResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> :
+          selection === "gridLayout" ? <GridResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> :
+            selection === "tableLayout" ? <TableResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} /> : ""
       }
       <br/><br/>
        <div style={{ textAlign: "center" }}>
