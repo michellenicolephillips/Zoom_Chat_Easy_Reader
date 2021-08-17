@@ -3,7 +3,7 @@ import '../App.css';
 import '../utilities/zoomChatParser';
 import { ZoomChat } from '../utilities/zoomChatParser';
 
-function InputBoxMain(props: { parsedInput: any, hideNamesOn: boolean }) {
+function InputBoxMain(props: { parsedInput: any, hideNamesOn: boolean, blankSpace: boolean }) {
 
      return (
           <div>
@@ -20,8 +20,13 @@ function InputBoxMain(props: { parsedInput: any, hideNamesOn: boolean }) {
                                    }
                                    )()}
                               </div>
-                              <div className="resultsDivMessage">
-                                   {zoomChat.message}
+                              <div>
+                                   <div className="resultsDivMessage">
+                                        {zoomChat.message}
+                                   </div>
+                                   <div>
+                                        {props.blankSpace ? <div className="blankSpace">  </div> : ""}
+                                   </div>
                               </div>
                          </div>
                     ))}

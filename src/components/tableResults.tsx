@@ -3,28 +3,33 @@ import '../App.css';
 import '../utilities/zoomChatParser';
 import { ZoomChat } from '../utilities/zoomChatParser';
 
-function InputBox(props: { parsedInput: any, hideNamesOn: boolean }) {
+function InputBox(props: { parsedInput: any, hideNamesOn: boolean, blankSpace: boolean }) {
 
      return (
           <div>
                <table className="zoomChatParsedResults" id="row" >
                     <tbody>
                          {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
-                              <tr key={zoomChat.key}>
-                                   <td className="resultsTableFrom">
-                                        {(() => {
-                                             if (props.hideNamesOn) {
-                                                  if (zoomChat.repeatedFromTo === false) {
-                                                       return zoomChat.from;
-                                                  }
+                              <>
+                                   <tr key={zoomChat.key}>
+                                        <td className="resultsTableFrom">
+
+                                             {props.hideNamesOn && zoomChat.repeatedFromTo === false &&
+                                                  zoomChat.from
                                              }
-                                        }
-                                        )()}
-                                   </td>
-                                   <td className="resultsTableMessage">
-                                        {zoomChat.message}
-                                   </td>
-                              </tr>
+                                        </td>
+                                        <td>
+                                             <div className="resultsTableMessage">{zoomChat.message}</div>
+                                        </td>
+                                   </tr>
+                                   {props.blankSpace &&
+                                        <tr>
+                                             <td>
+                                                  <div className="blankSpace">  </div>
+                                             </td>
+                                        </tr>
+                                   }
+                              </>
                          ))}
                     </tbody>
                </table>
