@@ -26,7 +26,7 @@ function InputBox(props: { parsedInput: any, hideNamesOn: boolean, blankSpace: b
                                         {zoomChat.message}
                                    </div>
                                    <div>
-                                        {props.blankSpace ? <div className="blankSpace"><br /></div> : ""}
+                                        {props.blankSpace ? <div className="blankSpace">  </div> : ""}
                                    </div>
                               </div>
                          </div>
