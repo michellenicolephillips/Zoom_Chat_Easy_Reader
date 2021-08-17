@@ -10,22 +10,26 @@ function InputBox(props: { parsedInput: any, hideNamesOn: boolean, blankSpace: b
                <table className="zoomChatParsedResults" id="row" >
                     <tbody>
                          {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
-                              <tr key={zoomChat.key}>
-                                   <td className="resultsTableFrom">
-                                        {(() => {
-                                             if (props.hideNamesOn) {
-                                                  if (zoomChat.repeatedFromTo === false) {
-                                                       return zoomChat.from;
-                                                  }
+                              <>
+                                   <tr key={zoomChat.key}>
+                                        <td className="resultsTableFrom">
+
+                                             {props.hideNamesOn && zoomChat.repeatedFromTo === false &&
+                                                  zoomChat.from
                                              }
-                                        }
-                                        )()}
-                                   </td>
-                                   <td>
-                                        <div className="resultsTableMessage">{zoomChat.message}</div>
-                                        {props.blankSpace ? <div className="blankSpace">  </div> : ""}
-                                   </td>
-                              </tr>
+                                        </td>
+                                        <td>
+                                             <div className="resultsTableMessage">{zoomChat.message}</div>
+                                        </td>
+                                   </tr>
+                                   {props.blankSpace &&
+                                        <tr>
+                                             <td>
+                                                  <div className="blankSpace">  </div>
+                                             </td>
+                                        </tr>
+                                   }
+                              </>
                          ))}
                     </tbody>
                </table>
