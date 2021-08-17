@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
-import DivResults from './components/divResults';
-import GridResults from './components/gridResults';
+// import DivResults from './components/divResults';
+// import GridResults from './components/gridResults';
 import TableResults from './components/tableResults';
 import InputBox from './components/inputBox';
 import { ZoomChat } from './utilities/zoomChatParser';
@@ -10,15 +10,15 @@ function App() {
 
   const [parsedInput, setParsedInput] = useState(Array<ZoomChat>());
   const [input, setInput] = useState('');
-  const [selection, setSelection] = useState("tableLayout");
+  // const [selection, setSelection] = useState("tableLayout");
   const [hideNamesOn, setHideNamesOn] = useState(true);
   const [blankSpace, setBlankSpace] = useState(true);
 
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
-    if (event) {
-      event && setSelection(event.target.value);
-    }
-  }
+  // const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
+  //   if (event) {
+  //     event && setSelection(event.target.value);
+  //   }
+  // }
 
   const hideNames = () => 
   {
