@@ -45,19 +45,20 @@ function App() {
       <br></br><br></br>
       {parsedInput.length === 0 && input.length>0 ?<div style={{background:"tomato", padding:"20px"}}>"That is not the correct format. Please insert a zoom chat!"</div> : ''}
       <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input}></InputBox>
-      <select value={selection} onChange={handleChange}>
+      {/*<select value={selection} onChange={handleChange}>
         <option value="divLayout">Div Results</option>
         <option value="gridLayout">Grid Results</option>
         <option value="tableLayout">Table Results</option>
-      </select>
+  </select>*/}
       <button onClick={hideNames}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</button>  
       <button onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</button>
       <br/>
-      {
+      {/*
         selection === "divLayout" ? <DivResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> :
           selection === "gridLayout" ? <GridResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> :
             selection === "tableLayout" ? <TableResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> : ""
-      }
+      */}
+      <TableResults parsedInput={parsedInput} hideNamesOn= {hideNamesOn} blankSpace={blankSpace}/>
       <br/><br/>
        <div style={{ textAlign: "center" }}>
         In the future all data will be processed on your computer.
