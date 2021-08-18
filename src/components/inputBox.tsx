@@ -6,9 +6,7 @@ import {  zoomChatParser } from '../utilities/zoomChatParser';
 
 function InputBox(props: {setParsedInput:any, input:any, setInput:any}) {
 
-
      const handleChange = (event: any) => {
-        
           props.setParsedInput(zoomChatParser(event.target.value));
           props.setInput(event.target.value);
      }

@@ -12,8 +12,7 @@ function App() {
   const [input, setInput] = useState('');
   // const [selection, setSelection] = useState("tableLayout");
   const [hideNamesOn, setHideNamesOn] = useState(true);
-  const [blankSpace, setBlankSpace] = useState(true);
-  const [sampleText, setSampleText] = useState("");
+  const [blankSpace, setBlankSpace] = useState(false);
 
   // const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
   //   if (event) {
@@ -22,12 +21,11 @@ function App() {
   // }
 
   const addSampleText = () => {
-    setSampleText(`11:48:19	 From  BentleyDavis.com : 😀 at the start
+    setInput(`11:48:19	 From  BentleyDavis.com : 😀 at the start
     11:48:31	 From  BentleyDavis.com : Emoji at the end 😀
     11:49:04	 From  Michelle Phillips : EMOJI 😃 IN THE MIDDLE
     11:49:35	 From  Michelle Phillips : test with tab copied over
     11:50:18	 From  Michelle Phillips : hello`);
-    setInput(sampleText);
   }
   const hideNames = () => 
   {
