@@ -17,7 +17,7 @@ textarea {
      width: 90%;
      justify-content:  center;
 }
-/*div Input Box CSS*/
+/*div Input Box CSS
 .divRow{
      display: flex;
 }
@@ -37,7 +37,7 @@ textarea {
      padding: 10px;
      border-radius: 25px;
 }
-/*Grid Input Box CSS*/
+/*Grid Input Box CSS
 .gridContainer{
      display: grid;
      grid-template-columns: 1fr 3fr;
@@ -54,13 +54,13 @@ textarea {
      padding: 10px;
      border-radius: 25px;
     
-}
+}*/
 
 /*Table Input Box CSS*/
 table{
      table-layout: fixed;
 } 
-.resultsTableFrom {
+.resultsTableTimeFrom {
      display: flex;
      font-size: .75em;
      color: grey;

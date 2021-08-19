@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 // import DivResults from './components/divResults';
 // import GridResults from './components/gridResults';
 import TableResults from './components/tableResults';
 import InputBox from './components/inputBox';
 import { ZoomChat } from './utilities/zoomChatParser';
+import { Button } from 'react-bootstrap/';
 
 function App() {
 
@@ -13,6 +15,7 @@ function App() {
   // const [selection, setSelection] = useState("tableLayout");
   const [hideNamesOn, setHideNamesOn] = useState(true);
   const [blankSpace, setBlankSpace] = useState(false);
+  const [hideTimeStampsOn, setHideTimeStampsOn] = useState(true);
 
   // const handleChange = (event: React.ChangeEvent<HTMLSelectElement> | undefined) => {
   //   if (event) {
@@ -45,6 +48,15 @@ function App() {
       setBlankSpace(true);
     }
   }
+  
+  const hideTimeStamps = () => {
+    if (hideTimeStampsOn) {
+      setHideTimeStampsOn(false);
+    } 
+    if (hideTimeStampsOn === false) {
+      setHideTimeStampsOn(true);
+    }
+  }
 
   return (
     <div className="App">
@@ -57,16 +69,17 @@ function App() {
         <option value="gridLayout">Grid Results</option>
         <option value="tableLayout">Table Results</option>
   </select>*/}
-      <button onClick={addSampleText}>Add Sample Text</button>
-      <button onClick={hideNames}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</button>  
-      <button onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</button>
+      <Button onClick={addSampleText}>Add Sample Text</Button>
+      <Button onClick={hideTimeStamps}>{hideTimeStampsOn? 'Hide Time Stamps' : 'Show Time Stamps'}</Button>
+      <Button onClick={hideNames}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</Button>  
+      <Button onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</Button>
       <br/>
       {/*
         selection === "divLayout" ? <DivResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> :
           selection === "gridLayout" ? <GridResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> :
             selection === "tableLayout" ? <TableResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> : ""
       */}
-      <TableResults parsedInput={parsedInput} hideNamesOn= {hideNamesOn} blankSpace={blankSpace}/>
+      <TableResults parsedInput={parsedInput} hideNamesOn= {hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn}/>
       <br/><br/>
        <div style={{ textAlign: "center" }}>
         In the future all data will be processed on your computer.
