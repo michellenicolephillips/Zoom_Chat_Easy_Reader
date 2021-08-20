@@ -23,8 +23,9 @@ function InputBox(props: {setParsedInput:any, input:any, setInput:any}) {
           reader.onload = function(event) {
                console.log(event.currentTarget);
                props.setInput(reader.result);
-               //props.setParsedInput(zoomChatParser(reader.result));
-               
+               if (typeof reader.result === "string") {
+               props.setParsedInput(zoomChatParser(reader.result));
+               }
           };
           reader.readAsText(file);
 
