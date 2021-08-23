@@ -1,4 +1,4 @@
-import { AnyRecord } from 'dns';
+//import { AnyRecord } from 'dns';
 import React from 'react';
 import '../App.css';
 import {  zoomChatParser } from '../utilities/zoomChatParser';
@@ -14,8 +14,6 @@ function InputBox(props: {setParsedInput: any, input:string, setInput: any}) {
      }
      const handleClick = (event: React.MouseEvent<HTMLTextAreaElement, MouseEvent>) => {
           event.currentTarget.select();
-
-
      }
      const handleDrop = (event: React.DragEvent<HTMLTextAreaElement>) => {
           event.preventDefault();
@@ -28,13 +26,17 @@ function InputBox(props: {setParsedInput: any, input:string, setInput: any}) {
                }
           };
           reader.readAsText(file);
-
-
      }
 
      const handleDragOver = (event: React.DragEvent<HTMLTextAreaElement>) => {
-          console.log("File is in the drop zone");
           event.preventDefault();
+     }
+
+     const handleDragEnter = (event: any) => {
+          event.currentTarget.style.background = "lightgrey";
+     }
+     const handleDragLeave = (event: any) => {
+          event.currentTarget.style.background = "white";
      }
      return (
           <div>
@@ -44,6 +46,8 @@ function InputBox(props: {setParsedInput: any, input:string, setInput: any}) {
                     </label>
                     <br />
                     <textarea 
+                         onDragEnter={handleDragEnter}
+                         onDragLeave={handleDragLeave}
                          onDrop={handleDrop} 
                          onDragOver={handleDragOver}
                          onClick={handleClick}

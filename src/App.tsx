@@ -9,11 +9,11 @@ import { zoomChatParser } from './utilities/zoomChatParser';
 import { Button } from 'react-bootstrap/';
 
 function App() {
-  const sampleText: string = `11:48:19	 From  BentleyDavis.com : 😀 at the start
-  11:48:31	 From  BentleyDavis.com : Emoji at the end 😀
-  11:49:04	 From  Michelle Phillips : EMOJI 😃 IN THE MIDDLE
-  11:49:35	 From  Michelle Phillips : test with tab copied over
-  11:50:18	 From  Michelle Phillips : hello`;
+  const sampleText: string = `11:48:19	 From  BentleyDavis.com : Welcome to ZoomChat Easy Reader! 😀 
+  11:48:31	 From  BentleyDavis.com : Zoom chats are hard to read. We can help.
+  11:49:04	 From  Michelle Phillips : Copy and paste your zoom chat here to get started.
+  11:49:35	 From  Michelle Phillips : Or, if you prefer, drag a zoom chat text file over.
+  11:50:18	 From  Michelle Phillips : Use the buttons below to format it how you'd like!`;
   const [parsedInput, setParsedInput] = useState(zoomChatParser(sampleText));
   const [input, setInput] = useState(sampleText);
   // const [selection, setSelection] = useState("tableLayout");
