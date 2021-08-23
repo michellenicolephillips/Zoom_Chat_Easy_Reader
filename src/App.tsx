@@ -78,7 +78,7 @@ function App() {
       <br /><br />
       <div style={{ textAlign: "center" }}>
         In the future all data will be processed on your computer.
-        Until the <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donation goal</a> is reached your data can be sent to a central server for prcessing but not stored.
+        Until the <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donation goal</a> is reached your data can be sent to a central server for processing but not stored.
       </div>
     </div>
   );
