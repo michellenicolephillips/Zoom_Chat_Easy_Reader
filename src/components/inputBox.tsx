@@ -1,12 +1,12 @@
 //import { AnyRecord } from 'dns';
 import React from 'react';
 //import '../App.css';
-import {  zoomChatParser } from '../utilities/zoomChatParser';
+import {  ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
 
 
 
-function InputBox(props: {setParsedInput: any, input:string, setInput: any}) {
-     let file: any;
+function InputBox(props: {setParsedInput: React.Dispatch<React.SetStateAction<ZoomChat[]>>, input:string, setInput: React.Dispatch<React.SetStateAction<string>>}) {
+     let file: File;
 
      const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
           props.setParsedInput(zoomChatParser(event.target.value));
@@ -20,9 +20,9 @@ function InputBox(props: {setParsedInput: any, input:string, setInput: any}) {
           file = event.dataTransfer.files[0];
           let reader = new FileReader();
           reader.onload = function(event) {
-               props.setInput(reader.result);
                if (typeof reader.result === "string") {
-               props.setParsedInput(zoomChatParser(reader.result));
+                    props.setInput(reader.result);
+                    props.setParsedInput(zoomChatParser(reader.result));
                }
           };
           reader.readAsText(file);
