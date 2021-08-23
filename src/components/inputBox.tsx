@@ -1,6 +1,6 @@
 //import { AnyRecord } from 'dns';
 import React from 'react';
-import '../App.css';
+//import '../App.css';
 import {  zoomChatParser } from '../utilities/zoomChatParser';
 
 
@@ -33,9 +33,11 @@ function InputBox(props: {setParsedInput: any, input:string, setInput: any}) {
      }
 
      const handleDragEnter = (event: any) => {
+          event.preventDefault();
           event.currentTarget.style.background = "lightgrey";
      }
      const handleDragLeave = (event: any) => {
+          event.preventDefault();
           event.currentTarget.style.background = "white";
      }
      return (

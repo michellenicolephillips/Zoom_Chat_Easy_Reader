@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
 import { ZoomChat } from '../utilities/zoomChatParser';
 
