@@ -7,28 +7,28 @@ import { ZoomChat } from '../utilities/zoomChatParser';
 function InputBox(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean }) {
 
      return (
-          <div>
-               <table className="zoomChatParsedResults" id="row" >
+          <div className="container">
+               <table className="zoomChatParsedResults table-borderless" id="row">
                     <tbody>
                          {props.parsedInput.map((zoomChat: ZoomChat, index: number) => (
                               <>
-                                   <tr key={zoomChat.key}>
-                                        <td className="resultsTableTimeFrom">
+                                   <tr key={zoomChat.key} className="row">
+                                        <td className="resultsTableTimeFrom col">
                                              {props.hideTimeStampsOn? zoomChat.when : ''}
                                         </td>
-                                        <td className="resultsTableTimeFrom">
+                                        <td className="resultsTableTimeFrom col">
 
                                              {props.hideNamesOn && zoomChat.repeatedFromTo === false &&
                                                   zoomChat.from
                                              }
                                         </td>
-                                        <td>
+                                        <td className="col">
                                              <div className="resultsTableMessage">{zoomChat.message}</div>
                                         </td>
                                    </tr>
                                    {props.blankSpace &&
-                                        <tr>
-                                             <td>
+                                        <tr className="row">
+                                             <td className="col">
                                                   <div className="blankSpace">  </div>
                                              </td>
                                         </tr>

@@ -41,7 +41,7 @@ function InputBox(props: {setParsedInput: React.Dispatch<React.SetStateAction<Zo
           event.currentTarget.style.background = "white";
      }
      return (
-          <div>
+          <div className="container">
                <form id="textbox">
                     <label>
                          Zoom Chat:
