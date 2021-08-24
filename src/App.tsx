@@ -40,8 +40,9 @@ function App() {
 
   return (
     <div className="App container">
-      <div className="row" style={{ textAlign: "center" }}>This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
-      <br></br>
+      <div className="row">
+        <div className="col text-center">This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
+      </div>
       {parsedInput.length === 0 && input.length > 0 ? <div style={{ background: "tomato", padding: "20px" }}>"That is not the correct format. Please insert a zoom chat!"</div> : ''}
       <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input}></InputBox>
       <br/>
@@ -62,10 +63,11 @@ function App() {
             selection === "tableLayout" ? <TableResults parsedInput={parsedInput} hideNamesOn = {hideNamesOn} blankSpace={blankSpace}/> : ""
       */}
       <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} />
-      <br /><br />
-      <div className="row" style={{ textAlign: "center" }}>
-        In the future all data will be processed on your computer.
-        Until the <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donation goal</a> is reached your data can be sent to a central server for processing but not stored.
+      <div className="row">
+        <div className="col text-center">
+          In the future all data will be processed on your computer.
+          Until the <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donation goal</a> is reached your data can be sent to a central server for processing but not stored.
+        </div>
       </div>
     </div>
   );

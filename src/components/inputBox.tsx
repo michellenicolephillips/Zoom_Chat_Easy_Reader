@@ -12,7 +12,7 @@ function InputBox(props: {setParsedInput: React.Dispatch<React.SetStateAction<Zo
           props.setParsedInput(zoomChatParser(event.target.value));
           props.setInput(event.target.value);
      }
-     const handleClick = (event: React.MouseEvent<HTMLTextAreaElement, MouseEvent>) => {
+     const handleClick = (event: React.FocusEvent<HTMLTextAreaElement>) => {
           event.currentTarget.select();
      }
      const handleDrop = (event: React.DragEvent<HTMLTextAreaElement>) => {
@@ -52,7 +52,7 @@ function InputBox(props: {setParsedInput: React.Dispatch<React.SetStateAction<Zo
                          onDragLeave={handleDragLeave}
                          onDrop={handleDrop} 
                          onDragOver={handleDragOver}
-                         onClick={handleClick}
+                         onFocus={handleClick}
                          placeholder="Paste Zoom Chat Here:"
                          value={props.input}
                          onChange={handleChange} />

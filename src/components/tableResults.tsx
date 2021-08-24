@@ -12,23 +12,24 @@ function InputBox(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankS
                     <tbody>
                          {props.parsedInput.map((zoomChat: ZoomChat, index: number) => (
                               <>
-                                   <tr key={zoomChat.key} className="row">
-                                        <td className="resultsTableTimeFrom col">
-                                             {props.hideTimeStampsOn? zoomChat.when : ''}
-                                        </td>
-                                        <td className="resultsTableTimeFrom col">
+                                   <tr key={zoomChat.key}>
+                                        <td className="resultsTableTimeFrom">
 
                                              {props.hideNamesOn && zoomChat.repeatedFromTo === false &&
                                                   zoomChat.from
                                              }
                                         </td>
-                                        <td className="col">
+                                        <td className="resultsTableTimeFrom">
+                                             {props.hideTimeStampsOn ? zoomChat.when : ''}
+                                        </td>
+
+                                        <td>
                                              <div className="resultsTableMessage">{zoomChat.message}</div>
                                         </td>
                                    </tr>
                                    {props.blankSpace &&
-                                        <tr className="row">
-                                             <td className="col">
+                                        <tr>
+                                             <td>
                                                   <div className="blankSpace">  </div>
                                              </td>
                                         </tr>
