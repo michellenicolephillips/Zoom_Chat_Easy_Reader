@@ -9,20 +9,23 @@ function InputBox(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankS
      return (
           <div className="container">
                <div className="row">
-                    <table  id = "results" className="zoomChatParsedResults table-borderless col-sm">
+                    <table id="results" className="zoomChatParsedResults table-borderless col-sm">
                          <tbody>
                               {props.parsedInput.map((zoomChat: ZoomChat, index: number) => (
                                    <>
                                         <tr key={zoomChat.key}>
-                                             <td className="resultsTableTimeFrom">
+                                             {props.hideNamesOn &&
+                                                  <td className="resultsTableTimeFrom">
 
-                                                  {props.hideNamesOn && zoomChat.repeatedFromTo === false &&
-                                                       zoomChat.from
-                                                  }
-                                             </td>
-                                             <td className="resultsTableTimeFrom">
-                                                  {props.hideTimeStampsOn ? zoomChat.when : ''}
-                                             </td>
+                                                       {zoomChat.repeatedFromTo === false &&
+                                                            zoomChat.from}
+                                                  </td>
+                                             }
+                                             {props.hideTimeStampsOn ?
+                                                  <td className="resultsTableTimeFrom">
+                                                       {zoomChat.when}
+                                                  </td>
+                                                  : ''}
 
                                              <td>
                                                   <div className="resultsTableMessage">{zoomChat.message}</div>

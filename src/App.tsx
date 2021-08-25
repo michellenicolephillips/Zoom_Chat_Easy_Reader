@@ -22,18 +22,37 @@ function App() {
     setHideNamesOn(!hideNamesOn);
   }
   const addSpace = () => {
-      setBlankSpace(!blankSpace);
+    setBlankSpace(!blankSpace);
   }
 
   const hideTimeStamps = () => {
-      setHideTimeStampsOn(!hideTimeStampsOn);
+    setHideTimeStampsOn(!hideTimeStampsOn);
   }
 
   const doSomething = () => {
+    let copyText = document.querySelector("#results");
+      //navigator.clipboard.writeText(copyText.outerHTML)
+      setClipboard(copyText?.outerHTML || "");
     console.log('does this button work?');
-    }
-     
-    
+  }
+
+  function setClipboard(text:string) {
+    var type = "text/html";
+    var blob = new Blob([text], { type });
+    // @ts-ignore
+    var data = [new ClipboardItem({ [type]: blob })];
+    // @ts-ignore
+    navigator.clipboard.write(data).then(
+        function () {
+        /* success */
+        },
+        function () {
+        /* failure */
+        }
+    );
+}
+
+
 
   return (
     <div className="App container">
@@ -49,7 +68,7 @@ function App() {
       </div>
       <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} />
       <div className="d-grid gap-2 d-md-block">
-          <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={doSomething}>Copy</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={doSomething}>Copy</Button>
       </div>
       <div className="row">
         <div className="col text-center my-3">
