@@ -9,7 +9,7 @@ function InputBox(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankS
      return (
           <div className="container">
                <div className="row">
-                    <table className="zoomChatParsedResults table-borderless col-sm" id="row">
+                    <table  id = "results" className="zoomChatParsedResults table-borderless col-sm">
                          <tbody>
                               {props.parsedInput.map((zoomChat: ZoomChat, index: number) => (
                                    <>

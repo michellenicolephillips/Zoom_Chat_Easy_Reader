@@ -29,6 +29,12 @@ function App() {
       setHideTimeStampsOn(!hideTimeStampsOn);
   }
 
+  const doSomething = () => {
+    console.log('does this button work?');
+    }
+     
+    
+
   return (
     <div className="App container">
       <div className="row">
@@ -42,6 +48,9 @@ function App() {
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</Button>
       </div>
       <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} />
+      <div className="d-grid gap-2 d-md-block">
+          <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={doSomething}>Copy</Button>
+      </div>
       <div className="row">
         <div className="col text-center my-3">
           In the future all data will be processed on your computer.
