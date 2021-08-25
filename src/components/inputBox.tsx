@@ -1,11 +1,11 @@
 //import { AnyRecord } from 'dns';
 import React from 'react';
-//import '../App.css';
-import {  ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
+import '../App.css';
+import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
 
 
 
-function InputBox(props: {setParsedInput: React.Dispatch<React.SetStateAction<ZoomChat[]>>, input:string, setInput: React.Dispatch<React.SetStateAction<string>>}) {
+function InputBox(props: { setParsedInput: React.Dispatch<React.SetStateAction<ZoomChat[]>>, input: string, setInput: React.Dispatch<React.SetStateAction<string>> }) {
      let file: File;
 
      const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -19,7 +19,7 @@ function InputBox(props: {setParsedInput: React.Dispatch<React.SetStateAction<Zo
           event.preventDefault();
           file = event.dataTransfer.files[0];
           let reader = new FileReader();
-          reader.onload = function(event) {
+          reader.onload = function (event) {
                if (typeof reader.result === "string") {
                     props.setInput(reader.result);
                     props.setParsedInput(zoomChatParser(reader.result));
@@ -42,22 +42,26 @@ function InputBox(props: {setParsedInput: React.Dispatch<React.SetStateAction<Zo
      }
      return (
           <div className="container">
-               <form id="textbox">
-                    <label>
-                         Zoom Chat:
+               <div className="row">
+                    <div className="col">
+                         <form>
+                              <label>
+                                   Zoom Chat:
                     </label>
-                    <br />
-                    <textarea 
-                         onDragEnter={handleDragEnter}
-                         onDragLeave={handleDragLeave}
-                         onDrop={handleDrop} 
-                         onDragOver={handleDragOver}
-                         onFocus={handleClick}
-                         placeholder="Paste Zoom Chat Here:"
-                         value={props.input}
-                         onChange={handleChange} />
-                    <br />
-               </form>
+                              <textarea
+                                   className="form-control"
+                                   rows={5}
+                                   onDragEnter={handleDragEnter}
+                                   onDragLeave={handleDragLeave}
+                                   onDrop={handleDrop}
+                                   onDragOver={handleDragOver}
+                                   onFocus={handleClick}
+                                   placeholder="Paste Zoom Chat Here:"
+                                   value={props.input}
+                                   onChange={handleChange} />
+                         </form>
+                    </div>
+               </div>
           </div>
      )
 }
