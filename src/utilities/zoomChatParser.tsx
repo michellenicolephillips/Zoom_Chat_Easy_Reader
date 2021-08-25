@@ -45,12 +45,13 @@ export function zoomChatParser(chatText: string): Array<ZoomChat> {
 
     for (const match of matches) {
         const fromTo = match[2].split(" to ");
-        const newMesage: any = {
+        const newMesage: ZoomChat = {
             when: match[1],
             from: fromTo[0].trim(),
             to: fromTo[1]?.trim(),
             message: "",
-            key: stringToHash(match[1])
+            key: stringToHash(match[1]),
+            repeatedFromTo: false
         };
         messages.push(newMesage);
 

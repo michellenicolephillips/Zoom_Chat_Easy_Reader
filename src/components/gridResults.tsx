@@ -3,13 +3,13 @@ import '../App.css';
 import '../utilities/zoomChatParser';
 import { ZoomChat } from '../utilities/zoomChatParser';
 
-function InputBox(props: { parsedInput: any, hideNamesOn: boolean, blankSpace: boolean }) {
+function InputBox(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean }) {
 
 
      return (
           <div>
                <div>
-                    {props.parsedInput.map((zoomChat: ZoomChat, index: any) => (
+                    {props.parsedInput.map((zoomChat: ZoomChat, index: number) => (
                          <div className="gridContainer" key={zoomChat.key}>
                               <div className="resultsGridFrom" >
                                    {(() => {
