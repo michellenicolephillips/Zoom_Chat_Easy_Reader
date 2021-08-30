@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
 import { ZoomChat } from '../utilities/zoomChatParser';
 
-function InputBox(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean }) {
+function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean }) {
 
      return (
           <div className="container">
@@ -16,7 +16,6 @@ function InputBox(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankS
                                         <tr key={zoomChat.key}>
                                              {props.hideNamesOn &&
                                                   <td className="resultsTableTimeFrom">
-
                                                        {zoomChat.repeatedFromTo === false &&
                                                             zoomChat.from}
                                                   </td>
@@ -46,4 +45,4 @@ function InputBox(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankS
           </div >
      )
 }
-export default InputBox;
+export default TableResults;

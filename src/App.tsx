@@ -29,29 +29,31 @@ function App() {
     setHideTimeStampsOn(!hideTimeStampsOn);
   }
 
-  const doSomething = () => {
+  const copyResults = () => {
     let copyText = document.querySelector("#results");
-      //navigator.clipboard.writeText(copyText.outerHTML)
-      setClipboard(copyText?.outerHTML || "");
-    console.log('does this button work?');
+    //navigator.clipboard.writeText(copyText.outerHTML)
+    setClipboard(copyText?.outerHTML || "");
   }
 
-  function setClipboard(text:string) {
+  function setClipboard(text: string) {
     var type = "text/html";
     var blob = new Blob([text], { type });
     // @ts-ignore
     var data = [new ClipboardItem({ [type]: blob })];
     // @ts-ignore
     navigator.clipboard.write(data).then(
-        function () {
+      function () {
         /* success */
-        },
-        function () {
+      },
+      function () {
         /* failure */
-        }
+      }
     );
-}
+  }
 
+  const blob = new Blob(["Something was downloaded."], { type: "text/plain" });
+  const downloadURL = URL.createObjectURL(blob);
+  //URL.revokeObjectURL(downloadURL);
 
 
   return (
@@ -68,7 +70,16 @@ function App() {
       </div>
       <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} />
       <div className="d-grid gap-2 d-md-block">
-        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={doSomething}>Copy</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy</Button>
+      </div>
+      <div className="row">
+        <div className="col">
+          <a
+            href={downloadURL}
+            download="zoom-chat-easy-reader-results">
+            Download Chat
+          </a>
+        </div>
       </div>
       <div className="row">
         <div className="col text-center my-3">
