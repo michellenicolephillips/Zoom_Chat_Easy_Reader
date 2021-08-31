@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
 import { ZoomChat } from '../utilities/zoomChatParser';
 
-function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean }) {
+function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean, markdownOn: boolean}) {
 
      return (
           <div className="container">
@@ -16,18 +16,23 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
                                         <tr key={zoomChat.key}>
                                              {props.hideNamesOn &&
                                                   <td className="resultsTableTimeFrom">
-                                                       {zoomChat.repeatedFromTo === false &&
+                                                       {props.markdownOn ? 
+                                                       zoomChat.repeatedFromTo === false &&
+                                                            "[[" + zoomChat.from + "]]": zoomChat.repeatedFromTo === false &&
                                                             zoomChat.from}
                                                   </td>
                                              }
                                              {props.hideTimeStampsOn ?
                                                   <td className="resultsTableTimeFrom">
-                                                       {zoomChat.when}
+                                                       {props.markdownOn ? "*" + zoomChat.when + "*" :
+                                                       zoomChat.when}
                                                   </td>
                                                   : ''}
 
                                              <td>
-                                                  <div className="resultsTableMessage">{zoomChat.message}</div>
+                                                  <div className="resultsTableMessage">
+                                                       {props.markdownOn? ">" + zoomChat.message : zoomChat.message}
+                                                       </div>
                                              </td>
                                         </tr>
                                         {props.blankSpace &&
