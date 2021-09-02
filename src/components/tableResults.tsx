@@ -2,13 +2,13 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
-import { ZoomChat } from '../utilities/zoomChatParser';
+import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
 
 
 
 function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean, markdownOn: boolean }) {
 
-     function blockQuoteText(text: string) {
+     const blockQuoteText = (text: string) => {
           if (props.markdownOn) {
                //return text.replaceAll(/\r/gm,"> ");
                return text
@@ -21,6 +21,17 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
           }
      }
      const md = props.markdownOn;
+     const usedNames: Array<string> = [];
+     const checkUsedNames = (text: string) => {
+         if (usedNames.includes(text)) {
+              return text;
+        } else {
+              usedNames.push(text);
+              return "[["+text+"]]";
+         }
+     }
+  
+
 
      return (
           <div className="container">
@@ -34,7 +45,8 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
                                                   <td className="resultsTableTimeFrom">
                                                        {props.markdownOn ?
                                                             zoomChat.repeatedFromTo === false &&
-                                                            "[[" + zoomChat.from + "]]" : zoomChat.repeatedFromTo === false &&
+                                                            checkUsedNames(zoomChat.from)
+                                                             : zoomChat.repeatedFromTo === false &&
                                                             zoomChat.from}
                                                   </td>
                                              }
@@ -52,7 +64,7 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
                                                   </div>
                                              </td>
                                         </tr>
-                                        {props.blankSpace && zoomChat.repeatedFromTo != false &&
+                                        {props.blankSpace && zoomChat.repeatedFromTo !== false &&
                                              <tr><td className="resultsTableTimeFrom"></td><td className="resultsTableTimeFrom"></td>
                                                   <td>
                                                        <div className="blankSpace"> </div>
