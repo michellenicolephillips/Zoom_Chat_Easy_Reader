@@ -2,7 +2,7 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
-import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
+import { ZoomChat } from '../utilities/zoomChatParser';
 
 
 
@@ -65,7 +65,9 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
                                              </td>
                                         </tr>
                                         {props.blankSpace && zoomChat.repeatedFromTo !== false &&
-                                             <tr><td className="resultsTableTimeFrom"></td><td className="resultsTableTimeFrom"></td>
+                                             <tr>
+                                                  <td className="resultsTableTimeFrom"></td>
+                                                  <td className="resultsTableTimeFrom"></td>
                                                   <td>
                                                        <div className="blankSpace"> </div>
                                                   </td>
