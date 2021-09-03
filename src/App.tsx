@@ -5,6 +5,7 @@ import TableResults from './components/tableResults';
 import InputBox from './components/inputBox';
 import { zoomChatParser } from './utilities/zoomChatParser';
 import { Button } from 'react-bootstrap/';
+import copy from 'copy-to-clipboard';
 
 function App() {
   const sampleText: string = `11:48:19	 From  BentleyDavis.com : Welcome to ZoomChat Easy Reader! 😀
@@ -37,24 +38,10 @@ function App() {
 
   const copyResults = () => {
     let copyText = document.querySelector("#results");
-    //navigator.clipboard.writeText(copyText.outerHTML)
-    setClipboard(copyText?.outerHTML || "");
-  }
-
-  function setClipboard(text: string) {
-    var type = "text/html";
-    var blob = new Blob([text], { type });
-    // @ts-ignore
-    var data = [new ClipboardItem({ [type]: blob })];
-    // @ts-ignore
-    navigator.clipboard.write(data).then(
-      function () {
-        /* success */
-      },
-      function () {
-        /* failure */
-      }
-    );
+    copy(copyText?.outerHTML || "", {
+      format: "text/html"
+    });
+  
   }
 
   //const blob = new Blob(["Something was downloaded."], { type: "text/plain" });
