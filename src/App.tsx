@@ -41,11 +41,11 @@ function App() {
     copy(copyText?.outerHTML || "", {
       format: "text/html"
     });
-  
+    alert("Copied!");
   }
-
-  //const blob = new Blob(["Something was downloaded."], { type: "text/plain" });
-  //const downloadURL = URL.createObjectURL(blob);
+  let downloadResults = document.querySelector("#results");
+  const blob = new Blob([downloadResults?.outerHTML || ""], { type: "text/html"});
+  const downloadURL = URL.createObjectURL(blob);
   //URL.revokeObjectURL(downloadURL);
 
 
@@ -61,12 +61,10 @@ function App() {
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={hideNames}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showMarkdown}>{markdownOn? 'Hide Markdown' : 'Show Markdown'}</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy All</Button>
       </div>
       <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn}/>
-      <div className="d-grid gap-2 d-md-block">
-        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy</Button>
-      </div>
-      {/*<div className="row">
+      <div className="row">
         <div className="col">
           <a
             href={downloadURL}
@@ -74,7 +72,7 @@ function App() {
             Download Chat
           </a>
         </div>
-  </div>*/}
+  </div>
       <div className="row">
         <div className="col text-center my-3">
           In the future all data will be processed on your computer.
