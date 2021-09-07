@@ -43,12 +43,21 @@ function App() {
     });
     alert("Copied!");
   }
-  let downloadResults = document.querySelector("#results");
-  const blob = new Blob([downloadResults?.outerHTML || ""], { type: "text/html"});
-  const downloadURL = URL.createObjectURL(blob);
-  //URL.revokeObjectURL(downloadURL);
-
-
+  const downloadFile = () => {
+     let downloadResults = document.querySelector("#results");
+     const blob = new Blob([downloadResults?.textContent || ""], { type: "text/html"});
+     const downloadURL = URL.createObjectURL(blob);
+     var hiddenElement = document.createElement('a');
+                hiddenElement.href = downloadURL;
+                hiddenElement.target = '_blank';
+                hiddenElement.download = "zoom-chat-easy-reader-results";
+                hiddenElement.click();
+       setTimeout (()=>{
+            URL.revokeObjectURL(downloadURL);
+            hiddenElement?.parentElement?.removeChild(hiddenElement);
+          },1000);
+  }
+  
   return (
     <div className="App container">
       <div className="row">
@@ -62,17 +71,9 @@ function App() {
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showMarkdown}>{markdownOn? 'Hide Markdown' : 'Show Markdown'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy All</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={downloadFile}>Download</Button>
       </div>
       <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn}/>
-      <div className="row">
-        <div className="col">
-          <a
-            href={downloadURL}
-            download="zoom-chat-easy-reader-results">
-            Download Chat
-          </a>
-        </div>
-  </div>
       <div className="row">
         <div className="col text-center my-3">
           In the future all data will be processed on your computer.
