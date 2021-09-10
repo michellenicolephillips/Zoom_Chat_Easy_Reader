@@ -3,7 +3,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TableResults from './components/tableResults';
 import InputBox from './components/inputBox';
-import { zoomChatParser } from './utilities/zoomChatParser';
+import { ZoomChat, zoomChatParser } from './utilities/zoomChatParser';
 import { Button } from 'react-bootstrap/';
 import copy from 'copy-to-clipboard';
 
@@ -43,21 +43,49 @@ function App() {
     });
     alert("Copied!");
   }
-  const downloadFile = () => {
-     let downloadResults = document.querySelector("#results");
-     const blob = new Blob([downloadResults?.textContent || ""], { type: "text/html"});
-     const downloadURL = URL.createObjectURL(blob);
-     var hiddenElement = document.createElement('a');
-                hiddenElement.href = downloadURL;
-                hiddenElement.target = '_blank';
-                hiddenElement.download = "zoom-chat-easy-reader-results";
-                hiddenElement.click();
-       setTimeout (()=>{
-            URL.revokeObjectURL(downloadURL);
-            hiddenElement?.parentElement?.removeChild(hiddenElement);
-          },1000);
+
+  const setDownloadResults = (parsedInput: ZoomChat[]) => {
+    var data = "";
+    for(const message of parsedInput){
+      
+      if (hideTimeStampsOn) {
+        if (markdownOn) {
+          data += "*" + message.when + "*";
+        } else {
+          data += message.when;
+        }
+      }
+      if (hideNamesOn) {
+        if (markdownOn) {
+          data += "[[" + message.from + "]]";
+        } else {
+          data += message.from
+        }
+      }
+      if (markdownOn) {
+        data += ">" + message.message;
+      } else {
+        data += message.message;
+      }
+    }
+    return data;
   }
-  
+
+  const downloadFile = () => {
+    let downloadResults = setDownloadResults(parsedInput);
+    const blob = new Blob([downloadResults], { type: "text/html" });
+    const downloadURL = URL.createObjectURL(blob);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = downloadURL;
+    hiddenElement.target = '_blank';
+    hiddenElement.download = "zoom-chat-easy-reader-results";
+    hiddenElement.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(downloadURL);
+      hiddenElement?.parentElement?.removeChild(hiddenElement);
+    }, 1000);
+  }
+
   return (
     <div className="App container">
       <div className="row">
@@ -69,11 +97,11 @@ function App() {
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={hideTimeStamps}>{hideTimeStampsOn ? 'Hide Time Stamps' : 'Show Time Stamps'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={hideNames}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</Button>
-        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showMarkdown}>{markdownOn? 'Hide Markdown' : 'Show Markdown'}</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showMarkdown}>{markdownOn ? 'Hide Markdown' : 'Show Markdown'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy All</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={downloadFile}>Download</Button>
       </div>
-      <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn}/>
+      <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn} />
       <div className="row">
         <div className="col text-center my-3">
           In the future all data will be processed on your computer.

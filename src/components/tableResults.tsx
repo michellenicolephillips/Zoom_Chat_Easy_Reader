@@ -30,8 +30,6 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
               return "[["+text+"]]";
          }
      }
-  
-
 
      return (
           <div className="container">
