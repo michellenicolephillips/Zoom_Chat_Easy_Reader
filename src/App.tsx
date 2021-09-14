@@ -6,6 +6,7 @@ import InputBox from './components/inputBox';
 import { ZoomChat, zoomChatParser } from './utilities/zoomChatParser';
 import { Button } from 'react-bootstrap/';
 import copy from 'copy-to-clipboard';
+import { checkUsedNames } from './utilities/checkUsedNames';
 
 function App() {
   const sampleText: string = `11:48:19	 From  BentleyDavis.com : Welcome to ZoomChat Easy Reader! 😀
@@ -49,25 +50,17 @@ function App() {
     for(const message of parsedInput){
       
       if (hideNamesOn && markdownOn) {
-        //need to import checkUsedNames & usedNames Array for markdown
-        if (message.repeatedFromTo) {
-          data += "[[" + message.from + "]]";
+        if (message.repeatedFromTo === false) {
+          data += checkUsedNames(message.from) + " ";
         }
       } else {
-        data += message.from;
+        data += message.from + " ";
       }
       if (hideTimeStampsOn) {
         if (markdownOn) {
-          data += "*" + message.when + "*";
+          data += "*" + message.when + "* ";
         } else {
-          data += message.when;
-        }
-      }
-      if (hideNamesOn) {
-        if (markdownOn) {
-          data += "[[" + message.from + "]]";
-        } else {
-          data += message.from
+          data += message.when + " ";
         }
       }
       if (markdownOn) {
@@ -76,8 +69,14 @@ function App() {
       } else {
         data += message.message;
       }
-    
-     // add \r\n\
+      if (blankSpace) {
+        if (markdownOn) {
+          data += "\r\n>"
+        } else {
+          data += "\r\n "
+        } 
+      }
+    data += "\r\n"
     }
     return data;
   }

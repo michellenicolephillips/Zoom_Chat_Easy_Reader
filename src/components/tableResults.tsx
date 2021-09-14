@@ -3,6 +3,7 @@ import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
 import { ZoomChat } from '../utilities/zoomChatParser';
+import { checkUsedNames } from '../utilities/checkUsedNames';
 
 
 
@@ -19,9 +20,9 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
           } else {
                return text;
           }
-     }
+     } 
      const md = props.markdownOn;
-     const usedNames: Array<string> = [];
+     /*const usedNames: Array<string> = [];
      const checkUsedNames = (text: string) => {
          if (usedNames.includes(text)) {
               return text;
@@ -29,7 +30,7 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
               usedNames.push(text);
               return "[["+text+"]]";
          }
-     }
+     }*/
 
      return (
           <div className="container">
