@@ -4,12 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
 import { ZoomChat } from '../utilities/zoomChatParser';
 import { checkUsedNames } from '../utilities/checkUsedNames';
+import { blockQuoteText } from '../utilities/blockQuoteText';
 
 
 
 function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean, markdownOn: boolean }) {
 
-     const blockQuoteText = (text: string) => {
+     /*const blockQuoteText = (text: string) => {
           if (props.markdownOn) {
                //return text.replaceAll(/\r/gm,"> ");
                return text
@@ -20,7 +21,7 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
           } else {
                return text;
           }
-     } 
+     }*/
      const md = props.markdownOn;
      /*const usedNames: Array<string> = [];
      const checkUsedNames = (text: string) => {
