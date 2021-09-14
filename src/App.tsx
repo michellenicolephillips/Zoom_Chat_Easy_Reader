@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TableResults from './components/tableResults';
 import InputBox from './components/inputBox';
-import { ZoomChat, zoomChatParser } from './utilities/zoomChatParser';
+import { Message, zoomChatParser } from './utilities/zoomChatParser';
 import { Button } from 'react-bootstrap/';
 import copy from 'copy-to-clipboard';
 import { checkUsedNames } from './utilities/checkUsedNames';
+import { blockQuoteText } from './utilities/blockQuoteText';
 
 function App() {
   const sampleText: string = `11:48:19	 From  BentleyDavis.com : Welcome to ZoomChat Easy Reader! 😀
@@ -45,13 +46,17 @@ function App() {
     alert("Copied!");
   }
 
-  const setDownloadResults = (parsedInput: ZoomChat[]) => {
+  const setDownloadResults = (parsedInput: Message[]) => {
     var data = "";
     for(const message of parsedInput){
       
       if (hideNamesOn && markdownOn) {
         if (message.repeatedFromTo === false) {
-          data += checkUsedNames(message.from) + " ";
+          if(message.firstTimeNameAppears) {
+            data += "[[" + message.from + "]] ";
+          } else {
+            data += message.from + " ";
+          }
         }
       } else {
         data += message.from + " ";
@@ -64,10 +69,9 @@ function App() {
         }
       }
       if (markdownOn) {
-        //need to import blockQuote function(message.message)
-        data += ">" + message.message;
+        data += blockQuoteText(message.content);
       } else {
-        data += message.message;
+        data += message.content;
       }
       if (blankSpace) {
         if (markdownOn) {
@@ -95,6 +99,10 @@ function App() {
       hiddenElement?.parentElement?.removeChild(hiddenElement);
     }, 1000);
   }
+
+  useEffect(() => {
+    setParsedInput(checkUsedNames(parsedInput));
+  }, [parsedInput] );
 
   return (
     <div className="App container">

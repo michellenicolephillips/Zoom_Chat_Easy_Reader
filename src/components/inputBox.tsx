@@ -1,10 +1,10 @@
 import React from 'react';
 import '../App.css';
-import { ZoomChat, zoomChatParser } from '../utilities/zoomChatParser';
+import { Message, zoomChatParser } from '../utilities/zoomChatParser';
 
 
 
-function InputBox(props: { setParsedInput: React.Dispatch<React.SetStateAction<ZoomChat[]>>, input: string, setInput: React.Dispatch<React.SetStateAction<string>> }) {
+function InputBox(props: { setParsedInput: React.Dispatch<React.SetStateAction<Message[]>>, input: string, setInput: React.Dispatch<React.SetStateAction<string>> }) {
      let file: File;
 
      const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {

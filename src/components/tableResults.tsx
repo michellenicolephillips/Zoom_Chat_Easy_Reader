@@ -2,26 +2,13 @@ import React from 'react';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
-import { ZoomChat } from '../utilities/zoomChatParser';
-import { checkUsedNames } from '../utilities/checkUsedNames';
+import { Message } from '../utilities/zoomChatParser';
 import { blockQuoteText } from '../utilities/blockQuoteText';
 
 
 
-function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean, markdownOn: boolean }) {
+function TableResults(props: { parsedInput: Message[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean, markdownOn: boolean }) {
 
-     /*const blockQuoteText = (text: string) => {
-          if (props.markdownOn) {
-               //return text.replaceAll(/\r/gm,"> ");
-               return text
-               .replaceAll("\n\r","\n")
-               .replaceAll("\r\n","\n")
-               .replaceAll("\r","\n")
-               .replaceAll("\n","\n> ");
-          } else {
-               return text;
-          }
-     }*/
      const md = props.markdownOn;
      /*const usedNames: Array<string> = [];
      const checkUsedNames = (text: string) => {
@@ -38,33 +25,35 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
                <div className="row">
                     <table id="results" className="zoomChatParsedResults table-borderless col-sm">
                          <tbody>
-                              {props.parsedInput.map((zoomChat: ZoomChat, index: number) => (
+                              {props.parsedInput.map((message: Message, index: number) => (
                                    <>
-                                        <tr key={zoomChat.key}>
+                                        <tr key={message.key}>
                                              {props.hideNamesOn &&
                                                   <td className="resultsTableTimeFrom">
                                                        {props.markdownOn ?
-                                                            zoomChat.repeatedFromTo === false &&
-                                                            checkUsedNames(zoomChat.from)
-                                                             : zoomChat.repeatedFromTo === false &&
-                                                            zoomChat.from}
+                                                            message.repeatedFromTo === false &&
+                                                            message.firstTimeNameAppears === true &&
+                                                                 "[[" + message.from + "]]"
+                                                             : message.repeatedFromTo === false &&
+                                                             message.firstTimeNameAppears === false &&
+                                                            "*" + message.from}
                                                   </td>
                                              }
                                              {props.hideTimeStampsOn ?
                                                   <td className="resultsTableTimeFrom">
                                                        {md && "*"}
-                                                       {zoomChat.when}
+                                                       {message.when}
                                                        {md && "*"}
                                                   </td>
                                                   : ''}
 
                                              <td>
                                                   <div className="resultsTableMessage">
-                                                       {props.markdownOn ? "> " + blockQuoteText(zoomChat.message) : zoomChat.message}
+                                                       {props.markdownOn ? "> " + blockQuoteText(message.content) : message.content}
                                                   </div>
                                              </td>
                                         </tr>
-                                        {props.blankSpace && zoomChat.repeatedFromTo !== false &&
+                                        {props.blankSpace && message.repeatedFromTo !== false &&
                                              <tr>
                                                   <td className="resultsTableTimeFrom"></td>
                                                   <td className="resultsTableTimeFrom"></td>
@@ -73,7 +62,7 @@ function TableResults(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
                                                   </td>
                                              </tr>
                                         }
-                                        {props.blankSpace && zoomChat.repeatedFromTo === false &&
+                                        {props.blankSpace && message.repeatedFromTo === false &&
                                              <tr><td className="resultsTableTimeFrom"></td><td className="resultsTableTimeFrom"></td>
                                                   <td>
                                                        <div className="blankSpace">{md && "> "}  </div>
