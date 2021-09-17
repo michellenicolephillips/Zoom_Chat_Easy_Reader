@@ -7,18 +7,24 @@ import { blockQuoteText } from '../utilities/blockQuoteText';
 
 
 
-function TableResults(props: { parsedInput: Message[], hideNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean, markdownOn: boolean }) {
+function TableResults(props: { parsedInput: Message[], showNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean, markdownOn: boolean }) {
 
      const md = props.markdownOn;
-     /*const usedNames: Array<string> = [];
-     const checkUsedNames = (text: string) => {
-         if (usedNames.includes(text)) {
-              return text;
-        } else {
-              usedNames.push(text);
-              return "[["+text+"]]";
-         }
-     }*/
+
+     const returnNameOptions = (message: Message) => {
+          if (props.showNamesOn && message.repeatedFromTo === false) {
+               if (md) {
+                    if(message.firstTimeNameAppears) {
+                        return "[[" + message.from + "]]";
+                       } else {
+                         return message.from + "";
+               }
+          }
+          return message.from;
+          } else {
+               return "";  
+          }
+     }
 
      return (
           <div className="container">
@@ -28,17 +34,9 @@ function TableResults(props: { parsedInput: Message[], hideNamesOn: boolean, bla
                               {props.parsedInput.map((message: Message, index: number) => (
                                    <>
                                         <tr key={message.key}>
-                                             {props.hideNamesOn &&
                                                   <td className="resultsTableTimeFrom">
-                                                       {props.markdownOn ?
-                                                            message.repeatedFromTo === false &&
-                                                            message.firstTimeNameAppears === true &&
-                                                                 "[[" + message.from + "]]"
-                                                             : message.repeatedFromTo === false &&
-                                                             message.firstTimeNameAppears === false &&
-                                                            "*" + message.from}
+                                                       {returnNameOptions(message)}
                                                   </td>
-                                             }
                                              {props.hideTimeStampsOn ?
                                                   <td className="resultsTableTimeFrom">
                                                        {md && "*"}

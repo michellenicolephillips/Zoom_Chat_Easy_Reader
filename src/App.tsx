@@ -18,13 +18,13 @@ function App() {
   11:50:18	 From  BentleyDavis.com : Use the buttons below to format it how you'd like!`;
   const [parsedInput, setParsedInput] = useState(zoomChatParser(sampleText));
   const [input, setInput] = useState(sampleText);
-  const [hideNamesOn, setHideNamesOn] = useState(true);
+  const [showNamesOn, setShowNamesOn] = useState(true);
   const [blankSpace, setBlankSpace] = useState(false);
   const [hideTimeStampsOn, setHideTimeStampsOn] = useState(true);
   const [markdownOn, setMarkdownOn] = useState(false);
 
-  const hideNames = () => {
-    setHideNamesOn(!hideNamesOn);
+  const showNames = () => {
+    setShowNamesOn(!showNamesOn);
   }
   const addSpace = () => {
     setBlankSpace(!blankSpace);
@@ -48,19 +48,19 @@ function App() {
 
   const setDownloadResults = (parsedInput: Message[]) => {
     var data = "";
-    for(const message of parsedInput){
-      
-      if (hideNamesOn && markdownOn) {
-        if (message.repeatedFromTo === false) {
-          if(message.firstTimeNameAppears) {
+    for (const message of parsedInput) {
+
+      if (showNamesOn && message.repeatedFromTo === false) {
+        if (markdownOn) {
+          if (message.firstTimeNameAppears) {
             data += "[[" + message.from + "]] ";
-          } else {
-            data += message.from + " ";
           }
         }
+        data += message.from;
       } else {
-        data += message.from + " ";
+        data += "";
       }
+
       if (hideTimeStampsOn) {
         if (markdownOn) {
           data += "*" + message.when + "* ";
@@ -69,7 +69,7 @@ function App() {
         }
       }
       if (markdownOn) {
-        data += blockQuoteText(message.content);
+        data += ">" + blockQuoteText(message.content);
       } else {
         data += message.content;
       }
@@ -78,9 +78,9 @@ function App() {
           data += "\r\n>"
         } else {
           data += "\r\n "
-        } 
+        }
       }
-    data += "\r\n"
+      data += "\r\n"
     }
     return data;
   }
@@ -102,31 +102,31 @@ function App() {
 
   useEffect(() => {
     setParsedInput(checkUsedNames(parsedInput));
-  }, [parsedInput] );
+  }, [parsedInput]);
 
   return (
     <div className="App container">
       <div className="row">
-      <div className="jumbotron jumbotron-fluid">
-  <div className="container">
-    <h1 className="display-4">Zoom Chat Easy Reader</h1>
-    <p className="my-4">Created by <a href="https://bentleydavis.com" target="_blank" rel="noreferrer">Bently Davis</a> and <a href="https://michellephillips.me" target="_blank" rel="noreferrer">Michelle Phillips</a>, 
+        <div className="jumbotron jumbotron-fluid">
+          <div className="container">
+            <h1 className="display-4">Zoom Chat Easy Reader</h1>
+            <p className="my-4">Created by <a href="https://bentleydavis.com" target="_blank" rel="noreferrer">Bently Davis</a> and <a href="https://michellephillips.me" target="_blank" rel="noreferrer">Michelle Phillips</a>,
      Funded by <a href="https://www.vincentarena.com/" target="_blank" rel="noreferrer">Vincent Arena</a> and <a href="http://peterkaminski.com/" target="_blank" rel="noreferrer">Peter Kaminski</a></p>
-  </div>
-</div>
+          </div>
+        </div>
         <div className="col">This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
       </div>
       {parsedInput.length === 0 && input.length > 0 ? <div className="alert-danger">"That is not the correct format. Please insert a zoom chat!"</div> : ''}
       <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input}></InputBox>
       <div className="d-grid gap-2 d-md-block">
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={hideTimeStamps}>{hideTimeStampsOn ? 'Hide Time Stamps' : 'Show Time Stamps'}</Button>
-        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={hideNames}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showNames}>{showNamesOn ? 'Hide Names' : 'Show Names'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showMarkdown}>{markdownOn ? 'Hide Markdown' : 'Show Markdown'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy All</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={downloadFile}>Download</Button>
       </div>
-      <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn} />
+      <TableResults parsedInput={parsedInput} showNamesOn={showNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn} />
       <div className="row">
         <div className="col my-3">
           In the future all data will be processed on your computer.
