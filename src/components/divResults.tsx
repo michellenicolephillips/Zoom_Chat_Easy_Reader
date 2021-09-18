@@ -1,14 +1,14 @@
 import React from 'react';
 import '../App.css';
 import '../utilities/zoomChatParser';
-import { ZoomChat } from '../utilities/zoomChatParser';
+import { Message } from '../utilities/zoomChatParser';
 
-function InputBoxMain(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, blankSpace: boolean }) {
+function InputBoxMain(props: { parsedInput: Message[], hideNamesOn: boolean, blankSpace: boolean }) {
 
      return (
           <div>
                <div>
-                    {props.parsedInput.map((zoomChat: ZoomChat, index: number) => (
+                    {props.parsedInput.map((zoomChat: Message, index: number) => (
                          <div className="divRow" key={zoomChat.key}>
                               <div className="resultsDivFrom">
                                    {(() => {
@@ -22,7 +22,7 @@ function InputBoxMain(props: { parsedInput: ZoomChat[], hideNamesOn: boolean, bl
                               </div>
                               <div>
                                    <div className="resultsDivMessage">
-                                        {zoomChat.message}
+                                        {zoomChat.content}
                                    </div>
                                    <div>
                                         {props.blankSpace ? <div className="blankSpace">  </div> : ""}

@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TableResults from './components/tableResults';
 import InputBox from './components/inputBox';
-import { zoomChatParser } from './utilities/zoomChatParser';
+import { Message, zoomChatParser } from './utilities/zoomChatParser';
 import { Button } from 'react-bootstrap/';
+import copy from 'copy-to-clipboard';
+import { checkUsedNames } from './utilities/checkUsedNames';
+import { blockQuoteText } from './utilities/blockQuoteText';
 
 function App() {
   const sampleText: string = `11:48:19	 From  BentleyDavis.com : Welcome to ZoomChat Easy Reader! 😀
@@ -15,13 +18,13 @@ function App() {
   11:50:18	 From  BentleyDavis.com : Use the buttons below to format it how you'd like!`;
   const [parsedInput, setParsedInput] = useState(zoomChatParser(sampleText));
   const [input, setInput] = useState(sampleText);
-  const [hideNamesOn, setHideNamesOn] = useState(true);
+  const [showNamesOn, setShowNamesOn] = useState(true);
   const [blankSpace, setBlankSpace] = useState(false);
   const [hideTimeStampsOn, setHideTimeStampsOn] = useState(true);
   const [markdownOn, setMarkdownOn] = useState(false);
 
-  const hideNames = () => {
-    setHideNamesOn(!hideNamesOn);
+  const showNames = () => {
+    setShowNamesOn(!showNamesOn);
   }
   const addSpace = () => {
     setBlankSpace(!blankSpace);
@@ -37,59 +40,95 @@ function App() {
 
   const copyResults = () => {
     let copyText = document.querySelector("#results");
-    //navigator.clipboard.writeText(copyText.outerHTML)
-    setClipboard(copyText?.outerHTML || "");
+    copy(copyText?.outerHTML || "", {
+      format: "text/html"
+    });
+    alert("Copied!");
   }
 
-  function setClipboard(text: string) {
-    var type = "text/html";
-    var blob = new Blob([text], { type });
-    // @ts-ignore
-    var data = [new ClipboardItem({ [type]: blob })];
-    // @ts-ignore
-    navigator.clipboard.write(data).then(
-      function () {
-        /* success */
-      },
-      function () {
-        /* failure */
+  const setDownloadResults = (parsedInput: Message[]) => {
+    var data = "";
+    for (const message of parsedInput) {
+
+      if (showNamesOn && message.repeatedFromTo === false) {
+        if (markdownOn) {
+          if (message.firstTimeNameAppears) {
+            data += "[[" + message.from + "]] ";
+          }
+        }
+        data += message.from;
+      } else {
+        data += "";
       }
-    );
+
+      if (hideTimeStampsOn) {
+        if (markdownOn) {
+          data += "*" + message.when + "* ";
+        } else {
+          data += message.when + " ";
+        }
+      }
+      if (markdownOn) {
+        data += ">" + blockQuoteText(message.content);
+      } else {
+        data += message.content;
+      }
+      if (blankSpace) {
+        if (markdownOn) {
+          data += "\r\n>"
+        } else {
+          data += "\r\n "
+        }
+      }
+      data += "\r\n"
+    }
+    return data;
   }
 
-  //const blob = new Blob(["Something was downloaded."], { type: "text/plain" });
-  //const downloadURL = URL.createObjectURL(blob);
-  //URL.revokeObjectURL(downloadURL);
+  const downloadFile = () => {
+    let downloadResults = setDownloadResults(parsedInput);
+    const blob = new Blob([downloadResults], { type: "text/html" });
+    const downloadURL = URL.createObjectURL(blob);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = downloadURL;
+    hiddenElement.target = '_blank';
+    hiddenElement.download = "zoom-chat-easy-reader-results";
+    hiddenElement.click();
+    setTimeout(() => {
+      URL.revokeObjectURL(downloadURL);
+      hiddenElement?.parentElement?.removeChild(hiddenElement);
+    }, 1000);
+  }
 
+  useEffect(() => {
+    setParsedInput(checkUsedNames(parsedInput));
+  }, [parsedInput]);
 
   return (
     <div className="App container">
       <div className="row">
-        <div className="col text-center">This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
+        <div className="jumbotron jumbotron-fluid">
+          <div className="container">
+            <h1 className="display-4">Zoom Chat Easy Reader</h1>
+            <p className="my-4">Created by <a href="https://bentleydavis.com" target="_blank" rel="noreferrer">Bently Davis</a> and <a href="https://michellephillips.me" target="_blank" rel="noreferrer">Michelle Phillips</a>,
+     Funded by <a href="https://www.vincentarena.com/" target="_blank" rel="noreferrer">Vincent Arena</a> and <a href="http://peterkaminski.com/" target="_blank" rel="noreferrer">Peter Kaminski</a></p>
+          </div>
+        </div>
+        <div className="col">This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
       </div>
       {parsedInput.length === 0 && input.length > 0 ? <div className="alert-danger">"That is not the correct format. Please insert a zoom chat!"</div> : ''}
       <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input}></InputBox>
       <div className="d-grid gap-2 d-md-block">
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={hideTimeStamps}>{hideTimeStampsOn ? 'Hide Time Stamps' : 'Show Time Stamps'}</Button>
-        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={hideNames}>{hideNamesOn ? 'Hide Names' : 'Show Names'}</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showNames}>{showNamesOn ? 'Hide Names' : 'Show Names'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</Button>
-        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showMarkdown}>{markdownOn? 'Hide Markdown' : 'Show Markdown'}</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showMarkdown}>{markdownOn ? 'Hide Markdown' : 'Show Markdown'}</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy All</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={downloadFile}>Download</Button>
       </div>
-      <TableResults parsedInput={parsedInput} hideNamesOn={hideNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn}/>
-      <div className="d-grid gap-2 d-md-block">
-        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy</Button>
-      </div>
-      {/*<div className="row">
-        <div className="col">
-          <a
-            href={downloadURL}
-            download="zoom-chat-easy-reader-results">
-            Download Chat
-          </a>
-        </div>
-  </div>*/}
+      <TableResults parsedInput={parsedInput} showNamesOn={showNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn} />
       <div className="row">
-        <div className="col text-center my-3">
+        <div className="col my-3">
           In the future all data will be processed on your computer.
           Until the <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donation goal</a> is reached your data can be sent to a central server for processing but not stored.
         </div>
