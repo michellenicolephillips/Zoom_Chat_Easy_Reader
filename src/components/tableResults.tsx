@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css';
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
 import { Message } from '../utilities/zoomChatParser';
@@ -26,6 +27,11 @@ function TableResults(props: { parsedInput: Message[], showNamesOn: boolean, bla
           }
      }
 
+     const removeItem = () => {
+          var itemToRemove : HTMLElement | null = document.getElementById('results');
+          itemToRemove?.remove();
+     }
+
      return (
           <div className="container">
                <div className="row">
@@ -50,6 +56,7 @@ function TableResults(props: { parsedInput: Message[], showNamesOn: boolean, bla
                                                        {props.markdownOn ? "> " + blockQuoteText(message.content) : message.content}
                                                   </div>
                                              </td>
+                                             <td><Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col"  onClick={removeItem}>x</Button></td>
                                         </tr>
                                         {props.blankSpace && message.repeatedFromTo !== false &&
                                              <tr>
