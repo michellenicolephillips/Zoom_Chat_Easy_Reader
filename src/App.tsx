@@ -100,9 +100,9 @@ function App() {
     }, 1000);
   }
 
-  useEffect(() => {
-    setParsedInput(checkUsedNames(parsedInput));
-  }, [parsedInput]);
+  // useEffect(() => {
+  //   setParsedInput(checkUsedNames(parsedInput));
+  // }, [parsedInput]);
 
   return (
     <div className="App container">
