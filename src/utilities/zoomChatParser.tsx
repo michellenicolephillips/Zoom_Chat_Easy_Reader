@@ -5,7 +5,8 @@ export interface Message {
     content: string;
     repeatedFromTo: boolean | undefined;
     firstTimeNameAppears: boolean;
-    key: number;
+    key: number,
+    hidden?: boolean;
 }
 // TODO: look for a better algorithm //Convert to 32bit integer
 function stringToHash(string:string) {

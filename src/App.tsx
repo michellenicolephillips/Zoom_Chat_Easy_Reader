@@ -100,9 +100,9 @@ function App() {
     }, 1000);
   }
 
-  useEffect(() => {
+  /*useEffect(() => {
     setParsedInput(checkUsedNames(zoomChatParser(input)));
-  }, [input]);
+  }, [input]);*/
 
   return (
     <div className="App container">

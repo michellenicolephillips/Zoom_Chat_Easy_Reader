@@ -27,9 +27,11 @@ function TableResults(props: { parsedInput: Message[], showNamesOn: boolean, bla
           }
      }
 
-     const removeItem = () => {
-          var itemToRemove : HTMLElement | null = document.getElementById('results');
-          itemToRemove?.remove();
+     const hideItem = (message: Message) => {
+          console.log(message);
+          message.hidden = !message.hidden;
+          //var itemToRemove : HTMLElement | null = document.getElementById('results');
+          //itemToRemove?.remove();
      }
 
      return (
@@ -56,7 +58,7 @@ function TableResults(props: { parsedInput: Message[], showNamesOn: boolean, bla
                                                        {props.markdownOn ? "> " + blockQuoteText(message.content) : message.content}
                                                   </div>
                                              </td>
-                                             <td><Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col"  onClick={removeItem}>x</Button></td>
+                                             <td><Button value={message.key} type="button" className="me-2 my-3 btn btn-secondary btn-sm col"  onClick={()=>{hideItem(message)}}>x</Button></td>
                                         </tr>
                                         {props.blankSpace && message.repeatedFromTo !== false &&
                                              <tr>
