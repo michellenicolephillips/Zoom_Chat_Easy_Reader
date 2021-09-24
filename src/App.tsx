@@ -22,6 +22,7 @@ function App() {
   const [blankSpace, setBlankSpace] = useState(false);
   const [hideTimeStampsOn, setHideTimeStampsOn] = useState(true);
   const [markdownOn, setMarkdownOn] = useState(false);
+  const [showHiddenOn, setShowHiddenOn] = useState(true);
 
   const showNames = () => {
     setShowNamesOn(!showNamesOn);
@@ -36,6 +37,10 @@ function App() {
 
   const showMarkdown = () => {
     setMarkdownOn(!markdownOn);
+  }
+
+  const showHidden = () => {
+    setShowHiddenOn(!showHiddenOn)
   }
 
   const copyResults = () => {
@@ -123,10 +128,11 @@ function App() {
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showNames}>{showNamesOn ? 'Hide Names' : 'Show Names'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showMarkdown}>{markdownOn ? 'Hide Markdown' : 'Show Markdown'}</Button>
+        <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showHidden}>{showHiddenOn ? 'Hide Messages' : 'Show Hidden Messages'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy All</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={downloadFile}>Download</Button>
       </div>
-      <TableResults parsedInput={parsedInput} showNamesOn={showNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn} setParsedInput={setParsedInput} />
+      <TableResults parsedInput={parsedInput} showNamesOn={showNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn} setParsedInput={setParsedInput} showHiddenOn={showHiddenOn} />
       <div className="row">
         <div className="col my-3">
           In the future all data will be processed on your computer.

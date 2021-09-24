@@ -14,7 +14,8 @@ function TableResults(props: {
      blankSpace: boolean,
      hideTimeStampsOn: boolean,
      markdownOn: boolean,
-     setParsedInput: React.Dispatch<React.SetStateAction<Message[]>>
+     setParsedInput: React.Dispatch<React.SetStateAction<Message[]>>,
+     showHiddenOn: boolean
 }) {
 
      const md = props.markdownOn;
@@ -34,16 +35,28 @@ function TableResults(props: {
           }
      }
 
+     const returnTimeOptions = (message: Message) => {
+          if (props.hideTimeStampsOn) {
+               if (props.markdownOn) {
+                    return "*" + message.when + "*";
+               } else {
+                    return message.when;
+               }
+          } else {
+               return "";
+          }
+     }
+
      const hideItem = (hideMessage: Message) => {
-          console.log(hideMessage);
           const newState = []
           for (const parsedMessage of props.parsedInput) {
                if (parsedMessage.key !== hideMessage.key) {
-                    newState.push(parsedMessage)
+                    newState.push(parsedMessage);
+               
                } else {
                     const newMessage = { ...hideMessage }
                     newMessage.hidden = !hideMessage.hidden
-                    newState.push(newMessage)
+                    newState.push(newMessage);
                }
           }
           props.setParsedInput(newState)
@@ -56,25 +69,22 @@ function TableResults(props: {
                          <tbody>
                               {props.parsedInput.map((message: Message, index: number) => (
                                    <>
-                                        <tr key={message.key}>
-                                             <td className="resultsTableTimeFrom">
-                                                  {returnNameOptions(message)}
-                                             </td>
-                                             {props.hideTimeStampsOn ?
+                                   {//message.hidden ? '' : 
+                                   <>
+                                        <tr key={message.key} className={message.hidden? 'hidden' : ''}>
                                                   <td className="resultsTableTimeFrom">
-                                                       {md && "*"}
-                                                       {message.when}
-                                                       {md && "*"}
+                                                       {returnNameOptions(message)}
                                                   </td>
-                                                  : ''}
-
-                                             <td>
-                                                  <div className="resultsTableMessage">
-                                                       {props.markdownOn ? "> " + blockQuoteText(message.content) : message.content}
-                                                  </div>
-                                             </td>
+                                                  <td className="resultsTableTimeFrom">
+                                                       {returnTimeOptions(message)}
+                                                  </td>
+                                                  <td>
+                                                       <div className="resultsTableMessage">
+                                                            {props.markdownOn ? "> " + blockQuoteText(message.content) : message.content}
+                                                       </div>
+                                                  </td>
                                              <td><Button value={message.key} type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={() => { hideItem(message) }}>x</Button>
-                                                  *{message.hidden?.toString()}*</td>
+                                             </td>
                                         </tr>
                                         {props.blankSpace && message.repeatedFromTo !== false &&
                                              <tr>
@@ -92,6 +102,8 @@ function TableResults(props: {
                                                   </td>
                                              </tr>
                                         }
+                                        </>
+                                   }
                                    </>
                               ))}
                          </tbody>

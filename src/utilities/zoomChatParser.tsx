@@ -6,7 +6,7 @@ export interface Message {
     repeatedFromTo: boolean | undefined;
     firstTimeNameAppears: boolean;
     key: number,
-    hidden?: boolean;
+    hidden: boolean;
 }
 // TODO: look for a better algorithm //Convert to 32bit integer
 function stringToHash(string:string) {
@@ -54,7 +54,8 @@ export function zoomChatParser(chatText: string): Array<Message> {
             content: "",
             key: stringToHash(match[1]),
             repeatedFromTo: false,
-            firstTimeNameAppears: false
+            firstTimeNameAppears: false,
+            hidden: false
         };
         messages.push(newMesage);
 
