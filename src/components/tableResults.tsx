@@ -69,9 +69,9 @@ function TableResults(props: {
                          <tbody>
                               {props.parsedInput.map((message: Message, index: number) => (
                                    <>
-                                   {//message.hidden ? '' : 
+                                   {message.hidden && !props.showHiddenOn? '' : 
                                    <>
-                                        <tr key={message.key} className={message.hidden? 'hidden' : ''}>
+                                        <tr key={message.key} className={message.hidden && props.showHiddenOn? 'hidden' : ''}>
                                                   <td className="resultsTableTimeFrom">
                                                        {returnNameOptions(message)}
                                                   </td>

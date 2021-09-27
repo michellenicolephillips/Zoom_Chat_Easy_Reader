@@ -115,7 +115,7 @@ function App() {
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
             <h1 className="display-4">Zoom Chat Easy Reader</h1>
-            <p className="my-4">Created by <a href="https://bentleydavis.com" target="_blank" rel="noreferrer">Bently Davis</a> and <a href="https://michellephillips.me" target="_blank" rel="noreferrer">Michelle Phillips</a>,
+            <p className="my-4">Created by <a href="https://bentleydavis.com" target="_blank" rel="noreferrer">Bentley Davis</a> and <a href="https://michellephillips.me" target="_blank" rel="noreferrer">Michelle Phillips</a>,
      Funded by <a href="https://www.vincentarena.com/" target="_blank" rel="noreferrer">Vincent Arena</a> and <a href="http://peterkaminski.com/" target="_blank" rel="noreferrer">Peter Kaminski</a></p>
           </div>
         </div>
