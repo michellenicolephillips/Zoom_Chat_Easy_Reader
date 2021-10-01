@@ -15,7 +15,8 @@ function TableResults(props: {
      hideTimeStampsOn: boolean,
      markdownOn: boolean,
      setParsedInput: React.Dispatch<React.SetStateAction<Message[]>>,
-     showHiddenOn: boolean
+     showHiddenOn: boolean,
+     submit: boolean
 }) {
 
      const md = props.markdownOn;
@@ -67,7 +68,7 @@ function TableResults(props: {
                <div className="row">
                     <table id="results" className="zoomChatParsedResults table-borderless col-sm">
                          <tbody>
-                              {props.parsedInput.map((message: Message, index: number) => (
+                              {props.submit? props.parsedInput.map((message: Message, index: number) => (
                                    <>
                                    {message.hidden && !props.showHiddenOn? '' : 
                                    <>
@@ -105,7 +106,7 @@ function TableResults(props: {
                                         </>
                                    }
                                    </>
-                              ))}
+                              )): ""}
                          </tbody>
                     </table>
                </div>
