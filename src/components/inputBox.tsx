@@ -54,9 +54,8 @@ function InputBox(props: {
                                    Zoom Chat:
                     </label>
                               <>
-                                   {props.submit ? '' :
                                         <textarea
-                                             //disabled
+                                             disabled = {props.submit? true : false}
                                              className="form-control"
                                              rows={5}
                                              onDragEnter={handleDragEnter}
@@ -68,7 +67,6 @@ function InputBox(props: {
                                              value={props.input}
                                              onChange={handleChange}
                                         />
-                                   }
                               </>
                          </form>
                     </div>

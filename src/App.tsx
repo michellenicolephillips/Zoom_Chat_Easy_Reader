@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { /*useEffect,*/ useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TableResults from './components/tableResults';
@@ -6,7 +6,7 @@ import InputBox from './components/inputBox';
 import { Message, zoomChatParser } from './utilities/zoomChatParser';
 import { Button } from 'react-bootstrap/';
 import copy from 'copy-to-clipboard';
-import { checkUsedNames } from './utilities/checkUsedNames';
+//import { checkUsedNames } from './utilities/checkUsedNames';
 import { blockQuoteText } from './utilities/blockQuoteText';
 
 function App() {
@@ -130,6 +130,7 @@ function App() {
       <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input} submit={submit}></InputBox>
       <div className="d-grid gap-2 d-md-block">
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={submitForResults}>{submit? "Change Input Data" : "Submit Input Data"}</Button>
+        <div className = {submit? '' : 'hideEditButtons'}>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={hideTimeStamps}>{hideTimeStampsOn ? 'Hide Time Stamps' : 'Show Time Stamps'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showNames}>{showNamesOn ? 'Hide Names' : 'Show Names'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={addSpace}>{blankSpace ? 'No Space Between Chats' : 'Add Space Between Chats'}</Button>
@@ -137,6 +138,7 @@ function App() {
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={showHidden}>{showHiddenOn ? 'Hide Messages' : 'Show Hidden Messages'}</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={copyResults}>Copy All</Button>
         <Button type="button" className="me-2 my-3 btn btn-secondary btn-sm col float-end" onClick={downloadFile}>Download</Button>
+      </div>
       </div>
       <TableResults submit={submit} parsedInput={parsedInput} showNamesOn={showNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn} setParsedInput={setParsedInput} showHiddenOn={showHiddenOn} />
       <div className="row">

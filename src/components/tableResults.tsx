@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
 import { Message } from '../utilities/zoomChatParser';
 import { blockQuoteText } from '../utilities/blockQuoteText';
+import { checkUsedNames } from '../utilities/checkUsedNames';
+import { setRepeatedFromTo } from '../utilities/repeatedFromTo';
 
 
 
@@ -60,7 +62,9 @@ function TableResults(props: {
                     newState.push(newMessage);
                }
           }
-          props.setParsedInput(newState)
+          props.setParsedInput(newState);
+          setRepeatedFromTo(props.parsedInput);
+          checkUsedNames(props.parsedInput);
      }
 
      return (

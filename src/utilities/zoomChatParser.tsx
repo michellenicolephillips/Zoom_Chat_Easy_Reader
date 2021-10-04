@@ -1,3 +1,5 @@
+import { checkUsedNames } from "./checkUsedNames";
+
 export interface Message {
     when: string;
     from: string;
@@ -23,21 +25,6 @@ function stringToHash(string:string) {
        
      return hash;
  }
-
-
-export function setRepeatedFromTo(messages: Array<Message>) {
-    messages.forEach((message: Message, index: number) => {
-        if (index === 0) {
-            message.repeatedFromTo = false;
-        } else {
-            const previousMessage: Message = messages[index - 1];
-            message.repeatedFromTo =
-                message.from === previousMessage.from &&
-                message.to === previousMessage.to
-        }
-    })
-    return messages
-}
 
 export function zoomChatParser(chatText: string): Array<Message> {
     const messages: Array<Message> = [];
@@ -72,5 +59,5 @@ export function zoomChatParser(chatText: string): Array<Message> {
     }
 
 
-    return setRepeatedFromTo(messages);
+    return checkUsedNames(messages);
 };
