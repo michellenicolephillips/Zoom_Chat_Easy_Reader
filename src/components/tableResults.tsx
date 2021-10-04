@@ -21,6 +21,23 @@ function TableResults(props: {
      submit: boolean
 }) {
 
+     const hideItem = (hideMessage: Message) => {
+          const newState = []
+          for (const parsedMessage of props.parsedInput) {
+               if (parsedMessage.key !== hideMessage.key) {
+                    newState.push(parsedMessage);
+               
+               } else {
+                    const newMessage = { ...hideMessage }
+                    newMessage.hidden = !hideMessage.hidden
+                    newState.push(newMessage);
+               }
+          }
+          props.setParsedInput(newState);
+          setRepeatedFromTo(props.parsedInput);
+          checkUsedNames(props.parsedInput);
+     }
+
      const md = props.markdownOn;
 
      const returnNameOptions = (message: Message) => {
@@ -48,23 +65,6 @@ function TableResults(props: {
           } else {
                return "";
           }
-     }
-
-     const hideItem = (hideMessage: Message) => {
-          const newState = []
-          for (const parsedMessage of props.parsedInput) {
-               if (parsedMessage.key !== hideMessage.key) {
-                    newState.push(parsedMessage);
-               
-               } else {
-                    const newMessage = { ...hideMessage }
-                    newMessage.hidden = !hideMessage.hidden
-                    newState.push(newMessage);
-               }
-          }
-          props.setParsedInput(newState);
-          setRepeatedFromTo(props.parsedInput);
-          checkUsedNames(props.parsedInput);
      }
 
      return (
