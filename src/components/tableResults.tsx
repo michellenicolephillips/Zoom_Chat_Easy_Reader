@@ -35,6 +35,7 @@ function TableResults(props: {
           }
           props.setParsedInput(newState);
           setRepeatedFromTo(props.parsedInput);
+          console.log(setRepeatedFromTo(props.parsedInput));
           checkUsedNames(props.parsedInput);
      }
 

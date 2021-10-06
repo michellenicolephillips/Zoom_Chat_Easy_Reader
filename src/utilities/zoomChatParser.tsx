@@ -1,4 +1,5 @@
 import { setRepeatedFromTo } from "./repeatedFromTo";
+import { checkUsedNames } from "./checkUsedNames";
 
 export interface Message {
     when: string;
@@ -58,6 +59,5 @@ export function zoomChatParser(chatText: string): Array<Message> {
         lastMessage.content = chatText.substring(lastMatch.index + lastMatch[0].length).trim()
     }
 
-
-    return setRepeatedFromTo(messages);
+    return setRepeatedFromTo(checkUsedNames(messages));
 };
