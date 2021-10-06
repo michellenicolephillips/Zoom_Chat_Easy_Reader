@@ -100,7 +100,7 @@ it("first two senders the same, first message hidden, third sender different", (
         ]);
 });
 
-it("first two senders(person1) the same, second two senders same(person2), 4th message hidden, fifth sender same as first (person1)", () => {
+it.only("first two senders(person1) the same, second two senders same(person2), 4th message hidden, fifth sender same as first (person1)", () => {
     let x: Message[] = [
         {
             when: "00:00:00",
