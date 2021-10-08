@@ -4,7 +4,7 @@ export function checkUsedNames(messages: Message[]) {
      const _messages = JSON.parse(JSON.stringify(messages));
      const usedNames: Array<string> = [];
      for(const message of _messages){
-          if (usedNames.includes(message.from) && message.hidden) {
+          if (usedNames.includes(message.from)) {
                message.firstTimeNameAppears = false;
           } else {
                message.firstTimeNameAppears = true;

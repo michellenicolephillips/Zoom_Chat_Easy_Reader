@@ -4,14 +4,17 @@ import { Message } from '../zoomChatParser';
 
 //checking for repeatedFromTo, no hidden messages
 it("single message returns false for repeatedFromTo", () => {
-    expect(setRepeatedFromTo(zoomChatParser("00:00:00 From  John Doe  to  Everyone : This is the message")))
+    let x = zoomChatParser("00:00:00 From  John Doe  to  Everyone : This is the message");
+    let result = setRepeatedFromTo(x);
+    expect(result)
         .toMatchObject([{
             repeatedFromTo: false
         }]);
 });
 it("two messages with same sender", () => {
-    let x = zoomChatParser(`09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\n\r09:06:10 From Peter Kaminski to Everyone : ++ on Prototyping with Miro or graph commons!!`)
-    expect(x)
+    let x = zoomChatParser(`09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\n\r09:06:10 From Peter Kaminski to Everyone : ++ on Prototyping with Miro or graph commons!!`);
+    let result = setRepeatedFromTo(x);
+    expect(result)
         .toMatchObject([
             {
                 repeatedFromTo: false
@@ -23,7 +26,8 @@ it("two messages with same sender", () => {
 });
 it("three messages, sender the same on first two", () => {
     let x = zoomChatParser(`09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\n\r09:06:10 From Peter Kaminski to Everyone : ++ on Prototyping with Miro or graph commons!! 09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`)
-    expect(x)
+    let result = setRepeatedFromTo(x);
+    expect(result)
         .toMatchObject([
             {
                 repeatedFromTo: false
@@ -38,7 +42,8 @@ it("three messages, sender the same on first two", () => {
 });
 it("four messages, sender the same on first two, different on third, fourth is same sender as first two", () => {
     let x = zoomChatParser(`09:02:13 From Peter Kaminski to Everyone : "organized group agreements"\n\r09:06:10 From Peter Kaminski to Everyone : ++ on Prototyping with Miro or graph commons!! 09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!! 09:02:13 From Peter Kaminski to Everyone : "organized group agreements"`)
-    expect(x)
+    let result = setRepeatedFromTo(x);
+    expect(result)
         .toMatchObject([
             {
                 repeatedFromTo: false
@@ -57,7 +62,7 @@ it("four messages, sender the same on first two, different on third, fourth is s
 
 //checking repeatedFromTo with some messages hidden
 it("first two senders the same, first message hidden, third sender different", () => {
-    expect([{
+    let x : Message [] = [{
         when: "00:00:00",
         from: "Person1",
         to: "everyone",
@@ -86,7 +91,9 @@ it("first two senders the same, first message hidden, third sender different", (
         repeatedFromTo: false,
         firstTimeNameAppears: false,
         hidden: false
-    }])
+    }]
+    let result = setRepeatedFromTo(x);
+    expect(result)
         .toMatchObject([
             {
                 repeatedFromTo: false
@@ -152,7 +159,8 @@ it.only("first two senders(person1) the same, second two senders same(person2), 
             firstTimeNameAppears: false,
             hidden: false
         }]
-    expect(setRepeatedFromTo(x))
+        const result = setRepeatedFromTo(x);
+    expect(result)
         .toMatchObject([
             {
                 hidden: false,

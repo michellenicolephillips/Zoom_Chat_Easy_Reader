@@ -5,19 +5,14 @@ export function setRepeatedFromTo(messages: Message[]) {
      messages.forEach((message: Message, index: number) => {
         
         if (message.hidden) {
-            message.repeatedFromTo === false;        
+            message.repeatedFromTo = false;        
          } else {
-             if (previousShownMessage === undefined) {
-                 previousShownMessage = message;
-             } else {
+             if (previousShownMessage !== undefined) {
                 message.repeatedFromTo = 
                 message.from === previousShownMessage.from &&
                 message.to === previousShownMessage.to;
-                previousShownMessage = message;
-
              }
-
-                
+             previousShownMessage = message;
          }
      })
      return messages;
