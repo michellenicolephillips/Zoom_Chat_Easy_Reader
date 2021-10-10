@@ -11,7 +11,7 @@ it("single message returns one object", () => {
       when: "00:00:00",
       from: "John Doe",
       to: "Everyone",
-      message: "This is the message",
+      content: "This is the message",
     }]);
 });
 
@@ -23,13 +23,13 @@ it("two messages with two objects", () => {
         when: "09:02:13",
         from: "Peter Kaminski",
         to: "Everyone",
-        message: "\"organized group agreements\"",
+        content: "\"organized group agreements\"",
       },
       {
         when: "09:06:10",
         from: "Vincent Arena",
         to: "Everyone",
-        message: "++ on Prototyping with Miro or graph commons!!",
+        content: "++ on Prototyping with Miro or graph commons!!",
       }
     ]);
 });
@@ -41,7 +41,7 @@ const expected = [
     when: "09:12:36",
     from: "Vincent Arena",
     to: "Everyone",
-    message: `Id love to share Troves most recent map - is actually pulling from a decentralized DB.
+    content: `Id love to share Troves most recent map - is actually pulling from a decentralized DB.
 
 Wendy this data is available in Airtable if you want to use it in graph commons or maptio to play around?`,
   }
@@ -63,7 +63,7 @@ it("message with links", () => {
         when: "10:22:07",
         from: "CSC Zoom",
         to: "Everyone",
-        message: "what does everyone think about the crunchable model : https://www.crunchbase.com/ is this outdated?",
+        content: "what does everyone think about the crunchable model : https://www.crunchbase.com/ is this outdated?",
       }
     ]);
 });
@@ -77,13 +77,13 @@ it("two messages with line terminators", () => {
         when: "09:02:13",
         from: "Peter Kaminski",
         to: "Everyone",
-        message: "\"organized group agreements\"",
+        content: "\"organized group agreements\"",
       },
       {
         when: "09:06:10",
         from: "Vincent Arena",
         to: "Everyone",
-        message: "++ on Prototyping with Miro or graph commons!!",
+        content: "++ on Prototyping with Miro or graph commons!!",
       }
     ]);
 });

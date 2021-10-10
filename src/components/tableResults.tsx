@@ -1,28 +1,70 @@
 import React from 'react';
 import '../App.css';
+import { Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../utilities/zoomChatParser';
 import { Message } from '../utilities/zoomChatParser';
 import { blockQuoteText } from '../utilities/blockQuoteText';
+import { checkUsedNames } from '../utilities/checkUsedNames';
+import { setRepeatedFromTo } from '../utilities/repeatedFromTo';
 
 
 
-function TableResults(props: { parsedInput: Message[], showNamesOn: boolean, blankSpace: boolean, hideTimeStampsOn: boolean, markdownOn: boolean }) {
+function TableResults(props: {
+     parsedInput: Message[],
+     showNamesOn: boolean,
+     blankSpace: boolean,
+     hideTimeStampsOn: boolean,
+     markdownOn: boolean,
+     setParsedInput: React.Dispatch<React.SetStateAction<Message[]>>,
+     showHiddenOn: boolean,
+     submit: boolean
+}) {
+
+     const hideItem = (hideMessage: Message) => {
+          const newState = []
+          for (const parsedMessage of props.parsedInput) {
+               if (parsedMessage.key !== hideMessage.key) {
+                    newState.push(parsedMessage);
+               
+               } else {
+                    const newMessage = { ...hideMessage }
+                    newMessage.hidden = !hideMessage.hidden
+                    newState.push(newMessage);
+               }
+          }
+          props.setParsedInput(newState);
+          setRepeatedFromTo(props.parsedInput);
+          console.log(setRepeatedFromTo(props.parsedInput));
+          checkUsedNames(props.parsedInput);
+     }
 
      const md = props.markdownOn;
 
      const returnNameOptions = (message: Message) => {
           if (props.showNamesOn && message.repeatedFromTo === false) {
                if (md) {
-                    if(message.firstTimeNameAppears) {
-                        return "[[" + message.from + "]]";
-                       } else {
+                    if (message.firstTimeNameAppears) {
+                         return "[[" + message.from + "]]";
+                    } else {
                          return message.from + "";
+                    }
                }
-          }
-          return message.from;
+               return message.from;
           } else {
-               return "";  
+               return "";
+          }
+     }
+
+     const returnTimeOptions = (message: Message) => {
+          if (props.hideTimeStampsOn) {
+               if (props.markdownOn) {
+                    return "*" + message.when + "*";
+               } else {
+                    return message.when;
+               }
+          } else {
+               return "";
           }
      }
 
@@ -31,24 +73,23 @@ function TableResults(props: { parsedInput: Message[], showNamesOn: boolean, bla
                <div className="row">
                     <table id="results" className="zoomChatParsedResults table-borderless col-sm">
                          <tbody>
-                              {props.parsedInput.map((message: Message, index: number) => (
+                              {props.submit? props.parsedInput.map((message: Message, index: number) => (
                                    <>
-                                        <tr key={message.key}>
+                                   {message.hidden && !props.showHiddenOn? '' : 
+                                   <>
+                                        <tr key={message.key} className={message.hidden && props.showHiddenOn? 'hidden' : ''}>
                                                   <td className="resultsTableTimeFrom">
                                                        {returnNameOptions(message)}
                                                   </td>
-                                             {props.hideTimeStampsOn ?
                                                   <td className="resultsTableTimeFrom">
-                                                       {md && "*"}
-                                                       {message.when}
-                                                       {md && "*"}
+                                                       {returnTimeOptions(message)}
                                                   </td>
-                                                  : ''}
-
-                                             <td>
-                                                  <div className="resultsTableMessage">
-                                                       {props.markdownOn ? "> " + blockQuoteText(message.content) : message.content}
-                                                  </div>
+                                                  <td>
+                                                       <div className="resultsTableMessage">
+                                                            {props.markdownOn ? "> " + blockQuoteText(message.content) : message.content}
+                                                       </div>
+                                                  </td>
+                                             <td><Button value={message.key} type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={() => { hideItem(message) }}>x</Button>
                                              </td>
                                         </tr>
                                         {props.blankSpace && message.repeatedFromTo !== false &&
@@ -67,8 +108,10 @@ function TableResults(props: { parsedInput: Message[], showNamesOn: boolean, bla
                                                   </td>
                                              </tr>
                                         }
+                                        </>
+                                   }
                                    </>
-                              ))}
+                              )): ""}
                          </tbody>
                     </table>
                </div>

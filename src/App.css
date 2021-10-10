@@ -17,4 +17,9 @@
 .blankSpace{
      white-space: pre-wrap;
 }
-
+.hidden{
+     opacity: .3;
+}
+.hideEditButtons{
+     display: none;
+}

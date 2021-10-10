@@ -1,3 +1,6 @@
+import { setRepeatedFromTo } from "./repeatedFromTo";
+import { checkUsedNames } from "./checkUsedNames";
+
 export interface Message {
     when: string;
     from: string;
@@ -5,7 +8,8 @@ export interface Message {
     content: string;
     repeatedFromTo: boolean | undefined;
     firstTimeNameAppears: boolean;
-    key: number;
+    key: number,
+    hidden: boolean;
 }
 // TODO: look for a better algorithm //Convert to 32bit integer
 function stringToHash(string:string) {
@@ -23,21 +27,6 @@ function stringToHash(string:string) {
      return hash;
  }
 
-
-export function setRepeatedFromTo(messages: Array<Message>) {
-    messages.forEach((message: Message, index: number) => {
-        if (index === 0) {
-            message.repeatedFromTo = false;
-        } else {
-            const previousMessage: Message = messages[index - 1];
-            message.repeatedFromTo =
-                message.from === previousMessage.from &&
-                message.to === previousMessage.to
-        }
-    })
-    return messages
-}
-
 export function zoomChatParser(chatText: string): Array<Message> {
     const messages: Array<Message> = [];
     let matches = chatText.matchAll(/(\d\d:\d\d:\d\d)[\s|\t]*From\s{1,2}(.*?)\s{0,2}:/gm);
@@ -53,7 +42,8 @@ export function zoomChatParser(chatText: string): Array<Message> {
             content: "",
             key: stringToHash(match[1]),
             repeatedFromTo: false,
-            firstTimeNameAppears: false
+            firstTimeNameAppears: false,
+            hidden: false
         };
         messages.push(newMesage);
 
@@ -69,6 +59,5 @@ export function zoomChatParser(chatText: string): Array<Message> {
         lastMessage.content = chatText.substring(lastMatch.index + lastMatch[0].length).trim()
     }
 
-
-    return setRepeatedFromTo(messages);
+    return setRepeatedFromTo(checkUsedNames(messages));
 };
