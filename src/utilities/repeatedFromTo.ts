@@ -11,6 +11,8 @@ export function setRepeatedFromTo(messages: Message[]) {
                 message.repeatedFromTo = 
                 message.from === previousShownMessage.from &&
                 message.to === previousShownMessage.to;
+             } else {
+                 message.repeatedFromTo = false;
              }
              previousShownMessage = message;
          }

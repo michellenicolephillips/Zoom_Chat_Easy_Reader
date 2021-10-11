@@ -22,7 +22,7 @@ function TableResults(props: {
 }) {
 
      const hideItem = (hideMessage: Message) => {
-          const newState = []
+          let newState = []
           for (const parsedMessage of props.parsedInput) {
                if (parsedMessage.key !== hideMessage.key) {
                     newState.push(parsedMessage);
@@ -33,10 +33,10 @@ function TableResults(props: {
                     newState.push(newMessage);
                }
           }
+          newState = setRepeatedFromTo(newState);
+          newState = checkUsedNames(newState);
+          console.log(newState);
           props.setParsedInput(newState);
-          setRepeatedFromTo(props.parsedInput);
-          console.log(setRepeatedFromTo(props.parsedInput));
-          checkUsedNames(props.parsedInput);
      }
 
      const md = props.markdownOn;

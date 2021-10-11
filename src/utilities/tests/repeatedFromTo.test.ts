@@ -61,7 +61,7 @@ it("four messages, sender the same on first two, different on third, fourth is s
 });
 
 //checking repeatedFromTo with some messages hidden
-it("first two senders the same, first message hidden, third sender different", () => {
+it("first one hidden", () => {
     let x : Message [] = [{
         when: "00:00:00",
         from: "Person1",
@@ -78,36 +78,39 @@ it("first two senders the same, first message hidden, third sender different", (
         to: "everyone",
         content: "Test Message 2",
         key: 2,
-        repeatedFromTo: false,
+        repeatedFromTo: true,
         firstTimeNameAppears: false,
         hidden: false
     },
     {
         when: "00:02:00",
-        from: "Person2",
+        from: "Person1",
         to: "everyone",
         content: "Test Message 3",
         key: 3,
-        repeatedFromTo: false,
+        repeatedFromTo: true,
         firstTimeNameAppears: false,
         hidden: false
     }]
     let result = setRepeatedFromTo(x);
     expect(result)
-        .toMatchObject([
+        .toMatchObject(<Partial<Message>[]>[
             {
-                repeatedFromTo: false
+                repeatedFromTo: false,
+                hidden: true
             },
             {
-                repeatedfromTo: false
+                repeatedFromTo: false,
+                hidden: false
             },
             {
-                repeatedFromTo: false
+                repeatedFromTo: true,
+                hidden: false
             }
         ]);
 });
 
-it.only("first two senders(person1) the same, second two senders same(person2), 4th message hidden, fifth sender same as first (person1)", () => {
+it("first two senders(person1) the same, second two senders same(person2), 4th message hidden, fifth sender same as first (person1)", () => {
     let x: Message[] = [
         {
             when: "00:00:00",
@@ -161,14 +164,14 @@ it.only("first two senders(person1) the same, second two senders same(person2), 
         }]
         const result = setRepeatedFromTo(x);
     expect(result)
-        .toMatchObject([
+        .toMatchObject( <Partial<Message>[]>[
             {
                 hidden: false,
                 repeatedFromTo: false
             },
             {
                 hidden: false,
-                repeatedfromTo: true
+                repeatedFromTo: true
             },
             {
                 hidden: true,
@@ -176,7 +179,7 @@ it.only("first two senders(person1) the same, second two senders same(person2), 
             },
             {
                 hidden: false,
-                repeatedfromTo: false
+                repeatedFromTo: false
             },
             {
                 hidden: false,
