@@ -1,7 +1,7 @@
 import { Message } from '../utilities/zoomChatParser';
 
 export function checkUsedNames(messages: Message[]) {
-     const _messages = JSON.parse(JSON.stringify(messages));
+     const _messages: Message[] = JSON.parse(JSON.stringify(messages));
      const usedNames: Array<string> = [];
      for(const message of _messages){
          
@@ -9,10 +9,10 @@ export function checkUsedNames(messages: Message[]) {
                message.firstTimeNameAppears = false;
           } else {
                if (usedNames.includes(message.from)) {
-                    message.firstTimeNameAppers = false;
+                    message.firstTimeNameAppears = false;
                } else {
-               message.firstTimeNameAppears = true;
-               usedNames.push(message.from);
+                    message.firstTimeNameAppears = true;
+                    usedNames.push(message.from);
                }
           }
      }

@@ -133,3 +133,66 @@ it("different senders", () => {
             }
         ]);
 });
+
+it.only("is checkUsedNames unset?", () => {
+    let x : Message [] = [{
+        when: "00:00:00",
+        from: "Person1",
+        to: "everyone",
+        content: "Test Message",
+        key: 1,
+        repeatedFromTo: true,
+        firstTimeNameAppears: false,
+        hidden: true
+    },
+    {
+        when: "00:01:00",
+        from: "Person1",
+        to: "everyone",
+        content: "Test Message 2",
+        key: 2,
+        repeatedFromTo: false,
+        firstTimeNameAppears: true,
+        hidden: false
+    },
+    {
+        when: "00:01:00",
+        from: "Person2",
+        to: "everyone",
+        content: "Test Message 2",
+        key: 2,
+        repeatedFromTo: false,
+        firstTimeNameAppears: true,
+        hidden: false
+    },
+    {
+        when: "00:02:00",
+        from: "Person1",
+        to: "everyone",
+        content: "Test Message 3",
+        key: 3,
+        repeatedFromTo: true,
+        firstTimeNameAppears: true,
+        hidden: false
+    }]
+    let result = checkUsedNames(x);
+    expect(result)
+        .toMatchObject(<Partial<Message>[]>[
+            {
+                firstTimeNameAppears: false,
+                hidden: true
+            },
+            {
+                firstTimeNameAppears: true,
+                hidden: false
+            },
+            {
+                firstTimeNameAppears: true,
+                hidden: false
+            },
+            {
+                firstTimeNameAppears: false,
+                hidden: false
+            }
+        ]);
+});
