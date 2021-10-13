@@ -1,4 +1,4 @@
-# Zoom Chat Easy reader
+# Zoom Chat Easy Reader
 
 Zoom chats are hard to read. We will create an website where you can paste in your zoom chat and choose form several different formats:
 
