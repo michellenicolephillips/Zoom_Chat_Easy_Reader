@@ -7,8 +7,7 @@ import { Message } from '../utilities/zoomChatParser';
 import { blockQuoteText } from '../utilities/blockQuoteText';
 import { checkUsedNames } from '../utilities/checkUsedNames';
 import { setRepeatedFromTo } from '../utilities/repeatedFromTo';
-
-
+import xbutton from '../close.svg';
 
 function TableResults(props: {
      parsedInput: Message[],
@@ -89,7 +88,7 @@ function TableResults(props: {
                                                             {props.markdownOn ? "> " + blockQuoteText(message.content) : message.content}
                                                        </div>
                                                   </td>
-                                             <td><Button value={message.key} type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={() => { hideItem(message) }}>x</Button>
+                                             <td><Button value={message.key} type="button" className="me-2 my-3 btn btn-secondary btn-sm col" onClick={() => { hideItem(message) }}><img src={xbutton} alt="hide message"/></Button>
                                              </td>
                                         </tr>
                                         {props.blankSpace && message.repeatedFromTo !== false &&
