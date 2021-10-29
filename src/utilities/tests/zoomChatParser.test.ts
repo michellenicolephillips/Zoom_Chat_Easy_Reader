@@ -1,4 +1,4 @@
-import { zoomChatParser } from "../zoomChatParser"
+import { zoomChatParser, Message } from "../zoomChatParser"
 
 it("blank chat should return zero objects", () => {
   expect(zoomChatParser(""))
@@ -84,6 +84,75 @@ it("two messages with line terminators", () => {
         from: "Vincent Arena",
         to: "Everyone",
         content: "++ on Prototyping with Miro or graph commons!!",
+      }
+    ]);
+});
+
+it("from as first name", () => {
+  expect(zoomChatParser(`
+  09:02:13 From From to Everyone : "organized group agreements" 09:06:10 From Vincent Arena to Everyone : ++ on Prototyping with Miro or graph commons!!`))
+    .toMatchObject([
+      {
+        when: "09:02:13",
+        from: "From",
+        to: "Everyone",
+        content: "\"organized group agreements\"",
+      },
+      {
+        when: "09:06:10",
+        from: "Vincent Arena",
+        to: "Everyone",
+        content: "++ on Prototyping with Miro or graph commons!!",
+      }
+    ]);
+});
+
+it("server side file format", () => {
+  const result : Message [] = zoomChatParser(`00:04:20	Name One:	Test text
+  00:11:54	Name Two:	Speaking of… 
+  00:12:11	Name One:	love that quote
+  00:12:38	Name Three:	nice. Not a cell..?
+  `)
+  expect(result)
+    .toMatchObject([
+      {
+        when: "00:04:20",
+        from: "Name One",
+        content: "Test text",
+      },
+      {
+        when: "00:11:54",
+        from: "Name Two",
+        content: "Speaking of…",
+      },
+      {
+        when: "00:12:11",
+        from: "Name One",
+        content: "love that quote",
+      },
+      {
+        when: "00:12:38",
+        from: "Name Three",
+        content: "nice. Not a cell..?",
+      }
+    ]);
+});
+
+it("From as name in server side file", () => {
+  const result : Message [] = zoomChatParser(`00:04:20	Name One:	Test text
+  00:11:54 From Name:	Speaking of… 
+  `)
+  expect(result)
+    .toMatchObject([
+      {
+        when: "00:04:20",
+        from: "Name One",
+        content: "Test text",
+      },
+      {
+        when: "00:11:54",
+        from: "From Name",
+        content: "Speaking of…",
       }
     ]);
 });
