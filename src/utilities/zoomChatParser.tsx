@@ -29,7 +29,7 @@ function stringToHash(string:string) {
 
 export function zoomChatParser(chatText: string): Array<Message> {
     const messages: Array<Message> = [];
-    let matches = chatText.matchAll(/(\d\d:\d\d:\d\d)[\s|\t]*From\s{1,2}(.*?)\s{0,2}:/gm);
+    let matches = chatText.matchAll(/(\d\d:\d\d:\d\d)[\s|\t](.*?)\s{0,2}:/gm);
     let lastMatch;
     let lastMessage: Message | undefined;
 
@@ -37,7 +37,7 @@ export function zoomChatParser(chatText: string): Array<Message> {
         const fromTo = match[2].split(" to ");
         const newMesage: Message = {
             when: match[1],
-            from: fromTo[0].trim(),
+            from: fromTo[0].replace("From ", "").trim(),
             to: fromTo[1]?.trim(),
             content: "",
             key: stringToHash(match[1]),
