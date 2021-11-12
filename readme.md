@@ -1,6 +1,7 @@
 # Zoom Chat Easy Reader
 
-[Website](https://zoom-chat-easy-reader.netlify.app/) 
+[Demo Website](https://zoom-chat-easy-reader.netlify.app/) 
+
 [Crowd funding site](https://www.gofundme.com/f/public-zoom-chat-formatter) 
 
 Zoom chats are hard to read. We will create an website where you can paste in your zoom chat and choose form several different formats:
