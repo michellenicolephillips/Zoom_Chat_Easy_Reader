@@ -19,7 +19,6 @@ You will be able to toggle on and off each feature and in combinations. You will
  ## [Possible Future Features](https://github.com/michellenicolephillips/Zoom_Chat_Easy_Reader/projects/1)
 - Extract Links
 - Download as JSON
--
 
 ## Dev Tools 
 
