@@ -46,12 +46,11 @@ function InputBox(props: {
           event.currentTarget.style.background = "white";
      }
      return (
-          <div className="container">
                <div className="row">
-                    <div className="col">
                          <form>
                               <label>
-                                   Zoom Chat:
+                                   To use the Zoom Chat Easy Reader, either copy and paste your chat into the input box below or drag a file over to get started.
+                                   Once you submit the data, you'll be able to format it how you'd like. When you're finished, you can copy or download the results.
                     </label>
                               <>
                                         <textarea
@@ -70,8 +69,6 @@ function InputBox(props: {
                               </>
                          </form>
                     </div>
-               </div>
-          </div>
      )
 }
 export default InputBox;

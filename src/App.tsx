@@ -1,4 +1,4 @@
-import React, { /*useEffect,*/ useState } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import TableResults from './components/tableResults';
@@ -6,7 +6,6 @@ import InputBox from './components/inputBox';
 import { Message, zoomChatParser } from './utilities/zoomChatParser';
 import { Button } from 'react-bootstrap/';
 import copy from 'copy-to-clipboard';
-//import { checkUsedNames } from './utilities/checkUsedNames';
 import { blockQuoteText } from './utilities/blockQuoteText';
 
 function App() {
@@ -110,21 +109,16 @@ function App() {
     }, 1000);
   }
 
-  /*useEffect(() => {
-    setParsedInput(checkUsedNames(zoomChatParser(input)));
-  }, [input]);*/
-
   return (
     <div className="App container">
       <div className="row">
         <div className="jumbotron jumbotron-fluid">
           <div className="container">
             <h1 className="display-4">Zoom Chat Easy Reader</h1>
-            <p className="my-4">Created by <a href="https://bentleydavis.com" target="_blank" rel="noreferrer">Bentley Davis</a> and <a href="https://michellephillips.me" target="_blank" rel="noreferrer">Michelle Phillips</a>,
+            <p className="my-4">Created by <a href="https://michellephillips.me" target="_blank" rel="noreferrer">Michelle Phillips</a> with help from <a href="https://bentleydavis.com" target="_blank" rel="noreferrer">Bentley Davis</a>,
      Funded by <a href="https://www.vincentarena.com/" target="_blank" rel="noreferrer">Vincent Arena</a> and <a href="http://peterkaminski.com/" target="_blank" rel="noreferrer">Peter Kaminski</a></p>
           </div>
         </div>
-        <div className="col">This app will only be available for a week! If you want to see it permanently free and public please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>.</div>
       </div>
       {parsedInput.length === 0 && input.length > 0 ? <div className="alert-danger">"That is not the correct format. Please insert a zoom chat!"</div> : ''}
       <InputBox setParsedInput={setParsedInput} setInput={setInput} input={input} submit={submit}></InputBox>
@@ -143,8 +137,7 @@ function App() {
       <TableResults submit={submit} parsedInput={parsedInput} showNamesOn={showNamesOn} blankSpace={blankSpace} hideTimeStampsOn={hideTimeStampsOn} markdownOn={markdownOn} setParsedInput={setParsedInput} showHiddenOn={showHiddenOn} />
       <div className="row">
         <div className="col my-3">
-          In the future all data will be processed on your computer.
-          Until the <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donation goal</a> is reached your data can be sent to a central server for processing but not stored.
+         If you'd like to see more features, please <a href="https://www.gofundme.com/f/public-zoom-chat-formatter" rel="noreferrer" target="_blank">donate</a>. 
         </div>
       </div>
     </div>
